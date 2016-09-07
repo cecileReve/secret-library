@@ -44,10 +44,7 @@ public class GestionDetailCommande {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM DetailCommande "
-                    + "JOIN Livre ON Livre.codeISBN = DetailCommande.codeISBN "
-                    + "JOIN Commande ON Commande.idCommande = DetailCommande.idCommande "
-                    + "JOIN Evenement ON Evenement.idEvenement = DetailCommande.idEvenement ";
+            String query = "SELECT * FROM DetailCommande ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
