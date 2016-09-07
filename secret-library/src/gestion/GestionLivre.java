@@ -49,9 +49,11 @@ public class GestionLivre {
             stmt.setDate(11, livre.getDateSortie());
             stmt.setFloat(12, livre.getPoidsLivre());
             stmt.setString(13, livre.getCommentaireLivre());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionLivre.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getErrorCode());
         }
     }
 
