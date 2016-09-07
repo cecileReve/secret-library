@@ -1,8 +1,6 @@
 package gestion;
 
 import classe.Cout;
-import classe.Prix;
-import classe.Theme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
