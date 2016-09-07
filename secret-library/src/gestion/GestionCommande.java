@@ -80,13 +80,11 @@ public class GestionCommande {
 
     public void sqlDelete(Commande commande, int idCommande) {
         try {
-            String query = "UPDATE COMMANDE SET IDSTATUT=?"
-                    + "WHERE IDCOMMANDE =" + idCommande;
-            PreparedStatement stmt = connexion.prepareStatement(query);
-            stmt.setInt(1, 205);
-            stmt.executeQuery();
+            String query = "DELETE FROM commande WHERE idCommande = " + idCommande;
+            Statement stmt = connexion.createStatement();
+            stmt.executeQuery(query);
         } catch (SQLException ex) {
-            Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
