@@ -44,7 +44,7 @@ public class GestionSousTheme {
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
-            Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
     }

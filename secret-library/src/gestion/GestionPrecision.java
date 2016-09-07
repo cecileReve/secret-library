@@ -33,7 +33,7 @@ public class GestionPrecision {
 
     public void sqlCreate(Livre livre, SousTheme st) {
         try {
-            String query = "INSERT INTO precision (NOMSOUSTHEME,CODEISBN) VALUES(?, ?)";
+            String query = "INSERT INTO PRECISION (NOMSOUSTHEME,CODEISBN) VALUES(?, ?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, st.getNomSousTheme());
             stmt.setString(2, livre.getcodeISBN());
@@ -46,7 +46,7 @@ public class GestionPrecision {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM precision ";
+            String query = "SELECT * FROM PRECISION ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -57,7 +57,7 @@ public class GestionPrecision {
 
     public void sqlUpdate(Precision precision, String codeISBN, String nomSousTheme) {
         try {
-            String query = "UPDATE precision SET "
+            String query = "UPDATE PRECISION SET "
                     + "nomSousTheme=?, "
                     + "CODEISBN =? "
                     + "WHERE nomSousTheme = " + nomSousTheme
@@ -72,7 +72,7 @@ public class GestionPrecision {
     }
 
     public void sqlDelete(Precision precision, String codeISBN, String nomSousTheme) {
-        String query = "DELETE FROM precision WHERE nomSousTheme = " + nomSousTheme
+        String query = "DELETE FROM PRECISION WHERE nomSousTheme = " + nomSousTheme
                 + " AND codeISBN = " + codeISBN;
         Statement stmt;
         try {

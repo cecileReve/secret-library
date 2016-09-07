@@ -28,7 +28,7 @@ public class GestionTheme {
     public void sqlCreate(Theme theme) {
 
         try {
-            String query = "INSERT INTO THEME(NOMTHEME)VALUES (?)";
+            String query = "INSERT INTO THEME(NOMTHEME) VALUES(?)";
             PreparedStatement stmt;
             stmt = connexion.prepareStatement(query);
             stmt.setString(1, theme.getNomTheme());
@@ -45,32 +45,32 @@ public class GestionTheme {
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
-            Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
     }
     
     public void sqlUpdate(Theme theme, String nomTheme) {
         try {
-            String query = "UPDATE promotion SET "
+            String query = "UPDATE THEME SET "
                     + "NOMTHEME =? "
                     + "WHERE NOMTHEME = " + nomTheme;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, nomTheme);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void sqlDelete(Theme theme, String nomTheme) {
-        String query = "DELETE FROM client WHERE idEvenement = " + nomTheme;
+        String query = "DELETE FROM THEME WHERE nomTheme = " + nomTheme;
         Statement stmt;
         try {
             stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
-            Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

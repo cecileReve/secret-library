@@ -1,7 +1,6 @@
 package gestion;
 
 import classe.Adresse;
-import classe.Affinage;
 import classe.Entreprise;
 import classe.Siege;
 import java.sql.Connection;
