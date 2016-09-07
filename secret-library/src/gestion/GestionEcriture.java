@@ -40,14 +40,15 @@ public class GestionEcriture {
     }
     
     public ResultSet sqlRead(){
+         ResultSet rs = null;
          try {
-             ResultSet rs = null;
              String query = "SELECT * FROM ecriture";
              Statement stmt = connexion.createStatement();
              rs = stmt.executeQuery(query);
          } catch (SQLException ex) {
              Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
          }
+         return rs;
     }
     
     public void sqlUpdate(Ecriture ecriture, int idAuteur, String codeISBN){
