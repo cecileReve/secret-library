@@ -57,7 +57,7 @@ public class GestionEnregistrementFacture {
     
     public void sqlUpdate(EnregistrementFacture el, int idClient, int idAdresse) {
         try {
-            String query = "UPDATE enregistrementFacture Values(?,?,?)WHERE idClient=" + idClient
+            String query = "UPDATE enregistrementFacture SET idClient=?,idAdresse=? WHERE idClient=" + idClient
                     + "AND idAdresse=" + idAdresse;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, el.getIdClient());

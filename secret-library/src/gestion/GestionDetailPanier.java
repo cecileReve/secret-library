@@ -51,10 +51,9 @@ public class GestionDetailPanier {
         return rs;
     }
 
-    public void sqlUpdate(DetailPanier dp, int idDetailPanier, int idPanier) {
+    public void sqlUpdate(DetailPanier dp, int idDetailPanier) {
         try {
-            String query = "UPDATE detailPanier VALUES(?,?)WHERE idDetailPanier=" + idDetailPanier
-                    + "AND idPanier=" + idPanier;
+            String query = "UPDATE detailPanier SET idDetailPanier=?,idPanier=? WHERE idDetailPanier=" + idDetailPanier;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, dp.getIdDetailPanier());
             stmt.setInt(2, dp.getIdPanier());
@@ -65,11 +64,10 @@ public class GestionDetailPanier {
 
     }
 
-    public void sqlDelete(DetailPanier dp, int idDetailPanier, int idPanier) {
+    public void sqlDelete(DetailPanier dp, int idDetailPanier) {
 
         try {
-            String query = "DELETE FROM detailPanier WHERE idDetailPanier=" + idDetailPanier
-                    + "AND idPanier=" + idPanier;
+            String query = "DELETE FROM detailPanier WHERE idDetailPanier=" + idDetailPanier;
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
