@@ -27,7 +27,9 @@ public class GestionCategorie {
 
     public void sqlCreate(Categorie cat) {
         try {
-            String query = "INSERT INTO Categorie VALUES (?)";
+            String query = "INSERT INTO "
+                    + "CATEGORIE (NOMCATEGORIE)"
+                    + "VALUES (?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cat.getNomCategorie());
             stmt.executeQuery();
@@ -39,7 +41,7 @@ public class GestionCategorie {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM Categorie";
+            String query = "SELECT * FROM CATEGORIE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -50,8 +52,9 @@ public class GestionCategorie {
 
     public void sqlUpdate(Categorie cat, String nomCategorie) {
         try {
-            String query = "UPDATE Categorie SET nomCAtegorie = ? "
-                    + "WHERE nomCategorie = " + nomCategorie;
+            String query = "UPDATE CATEGORIE SET "
+                    + "NOMCATEGORIE = ? "
+                    + "WHERE NOMCATEGORIE = " + nomCategorie;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cat.getNomCategorie());
             stmt.executeUpdate();
@@ -62,7 +65,7 @@ public class GestionCategorie {
 
     public void sqlDelete(Categorie cat, String nomCategorie) {
         try {
-            String query = "DELETE FROM Categorie WHERE nomCategorie = " + nomCategorie;
+            String query = "DELETE FROM CATEGORIE WHERE NOMCATEGORIE = " + nomCategorie;
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {

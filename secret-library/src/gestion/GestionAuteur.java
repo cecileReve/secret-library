@@ -29,7 +29,9 @@ public class GestionAuteur {
     
     public void sqlCreate(Auteur auteur){
         try {
-            String query = "INSERT INTO auteur VALUES(?,?)";
+            String query = "INSERT INTO "
+                    + "AUTEUR (NOMAUTEUR,PRENOMAUTEUR)"
+                    + "VALUES(?,?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, auteur.getNomAuteur());
             stmt.setString(2, auteur.getPrenomAuteur());
@@ -43,7 +45,7 @@ public class GestionAuteur {
     public ResultSet sqlRead(){
          ResultSet rs = null;
         try {
-            String query = "SELECT * FROM auteur";
+            String query = "SELECT * FROM AUTEUR";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -54,7 +56,10 @@ public class GestionAuteur {
     
     public void sqlUpdate(Auteur auteur, int idAuteur){
         try {
-            String query = "UPDATE auteur SET idAuteur=?, nomAuteur=?, prenomAuteur=?"
+            String query = "UPDATE AUTEUR SET "
+                    + "idAuteur=?, "
+                    + "nomAuteur=?, "
+                    + "prenomAuteur=?"
                     +"WHERE idAuteur="+idAuteur;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, auteur.getIdAuteur());

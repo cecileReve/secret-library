@@ -1,7 +1,6 @@
 package gestion;
 
 import classe.Adresse;
-import classe.Commande;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +26,9 @@ public class GestionAdresse {
 
     public void sqlCreate(Adresse adresse) {
         try {
-            String query = "INSERT INTO ADRESSE(IDADRESSE, NUMADRESSE, VOIEADRESSE, CODEPOSTAL, VILLE, CPTADRESSE, PAYSADRESSE, COMMENTAIREADRESSE) VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
+            String query = "INSERT INTO "
+                    + "ADRESSE(IDADRESSE, NUMADRESSE, VOIEADRESSE, CODEPOSTAL, VILLE, CPTADRESSE, PAYSADRESSE, COMMENTAIREADRESSE) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, adresse.getIdAdresse());
             stmt.setString(2, adresse.getNumAdresse());
