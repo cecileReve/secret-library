@@ -1,10 +1,9 @@
-
 package classe;
 
 import java.sql.Date;
 
 public class Livre {
-    
+
     private String codeISBN;
     private String nomEditeur;
     private String nomCategorie;
@@ -159,30 +158,5 @@ public class Livre {
     public String toString() {
         return "Livre{" + "codeISBN=" + codeISBN + ", nomEditeur=" + nomEditeur + ", nomCategorie=" + nomCategorie + ", idStatut=" + idStatut + ", nomTaxe=" + nomTaxe + ", nomLivre=" + nomLivre + ", sousTitre=" + sousTitre + ", couvLivre=" + couvLivre + ", resumeLivre=" + resumeLivre + ", stockLivre=" + stockLivre + ", dateSortie=" + dateSortie + ", poidsLivre=" + poidsLivre + ", commentaireLivre=" + commentaireLivre + '}';
     }
-    
-    public void supprimerLivre(){
-//        this.idStatut = ;
-    }
-    
-    public void modifierLivre(String nom, String sousTitre, 
-            String nomEditeur, Date dateSortie, 
-            String nomTaxe, int idStatut, String nomCategorie, 
-            String commmentaireLivre, int stockLivre, 
-            float poidsLivre, String resumeLivre, String codeISBN, 
-            String couvLivre){
-        setNomLivre(nom);
-        setSousTitre(sousTitre);
-        setNomEditeur(nomEditeur);
-        setDateSortie(dateSortie);
-        setNomTaxe(nomTaxe);
-        setIdStatut(idStatut);
-        setNomCategorie(nomCategorie);
-        setCommentaireLivre(commmentaireLivre);
-        setResumeLivre(resumeLivre);
-        setPoidsLivre(poidsLivre);
-        setStockLivre(stockLivre);
-        setcodeISBN(codeISBN);
-        setCouvLivre(couvLivre);
-    }
-    
+
 }
