@@ -27,7 +27,7 @@ public class GestionDetailCommande {
 
     public void sqlCreate(DetailCommande dc) {
         try {
-            String query = "INSERT INTO DetailCommande VALUES(?, ?, ?, ?, ?, ?) ";
+            String query = "INSERT INTO DetailCommande(CodeISBN,IdCommande,IdEvenement,QuantiteDetailCommance,PrixHTDetailCommande,TauxTVADetailCommannde) VALUES(?, ?, ?, ?, ?, ?) ";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, dc.getCodeISBN());
             stmt.setInt(2, dc.getIdCommande());
@@ -44,10 +44,7 @@ public class GestionDetailCommande {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM DetailCommande "
-                    + "JOIN Livre ON Livre.codeISBN = DetailCommande.codeISBN "
-                    + "JOIN Commande ON Commande.idCommande = DetailCommande.idCommande "
-                    + "JOIN Evenement ON Evenement.idEvenement = DetailCommande.idEvenement ";
+            String query = "SELECT * FROM DetailCommande ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -58,9 +55,13 @@ public class GestionDetailCommande {
 
     public void sqlUpdate(DetailCommande dc, int idDetailCommande) {
         try {
-            String query = "UPDATE detailCommande SET CodeISBN = ?, "
-                    + "IdCommande = ?, IdEvenement = ?, QuantiteDetailCommance = ?, "
-                    + "PrixHTDetailCommande = ?, TauxTVADetailCommannde = ? "
+            String query = "UPDATE detailCommande SET "
+                    + "CodeISBN = ?, "
+                    + "IdCommande = ?, "
+                    + "IdEvenement = ?, "
+                    + "QuantiteDetailCommance = ?, "
+                    + "PrixHTDetailCommande = ?, "
+                    + "TauxTVADetailCommannde = ? "
                     + "WHERE idDetailCommande = " + idDetailCommande;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, dc.getCodeISBN());
