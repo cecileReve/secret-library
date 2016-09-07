@@ -27,7 +27,10 @@ public class GestionClient {
 
     public void sqlCreate(Client c) {
         try {
-            String query = "INSERT INTO client VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO "
+                    + "CLIENT (IDSTATUT,NOMCLIENT,PRENOMCLIENT,TELCLIENT,NAISSANCECLIENT,EMAILCLIENT,MDPCLIENT,DATEINSCRIPTION,DATEDESINSCRIPTION,COMMENTAIRECLIENT) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, c.getIdStatut());
             stmt.setString(2, c.getNomClient());
@@ -48,7 +51,11 @@ public class GestionClient {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
+<<<<<<< HEAD
             String query = "SELECT * FROM client";
+=======
+            String query = "SELECT * FROM CLIENT";
+>>>>>>> branchegestionadresse
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -59,9 +66,22 @@ public class GestionClient {
    
     public void sqlUpdate(Client c, int idClient) {
         try {
+<<<<<<< HEAD
             String query = "UPDATE Client SET idStatut = ?, nomClient = ?, prenomClient = ?, "
                     + "telClient = ?, naissance client = ?, emailClient = ?, "
                     + "mdpClient = ?, dateInscription = ?, dateDesinscription = ?, "
+=======
+            String query = "UPDATE Client SET "
+                    + "idStatut = ?, "
+                    + "nomClient = ?, "
+                    + "prenomClient = ?, "
+                    + "telClient = ?, "
+                    + "naissance client = ?, "
+                    + "emailClient = ?, "
+                    + "mdpClient = ?, "
+                    + "dateInscription = ?, "
+                    + "dateDesinscription = ?, "
+>>>>>>> branchegestionadresse
                     + "commentaireClient = ? "
                     + "WHERE idClient = " + idClient;
             PreparedStatement stmt = connexion.prepareStatement(query);
