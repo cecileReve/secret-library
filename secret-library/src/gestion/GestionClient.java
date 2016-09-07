@@ -56,7 +56,7 @@ public class GestionClient {
         }
         return rs;
     }
-    
+   
     public void sqlUpdate(Client c, int idClient) {
         try {
             String query = "UPDATE Client SET idStatut = ?, nomClient = ?, prenomClient = ?, "

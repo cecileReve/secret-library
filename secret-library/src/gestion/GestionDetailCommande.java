@@ -3,6 +3,7 @@ package gestion;
 import classe.DetailCommande;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -26,10 +27,7 @@ public class GestionDetailCommande {
 
     public void sqlCreate(DetailCommande dc) {
         try {
-            String query = "INSERT INTO DetailCommande VALUES(?, ?, ?, ?, ?, ?) "
-                    + "JOIN Livre ON Livre.codeISBN = DetailCommande.codeISBN "
-                    + "JOIN Commande ON Commande.idCommande = DetailCommande.idCommande "
-                    + "JOIN Evenement ON Evenement.idEvenement = DetailCommande.idEvenement";
+            String query = "INSERT INTO DetailCommande VALUES(?, ?, ?, ?, ?, ?) ";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, dc.getCodeISBN());
             stmt.setInt(2, dc.getIdCommande());
@@ -43,25 +41,26 @@ public class GestionDetailCommande {
         }
     }
 
-    public void sqlRead() {
+    public ResultSet sqlRead() {
+        ResultSet rs = null;
         try {
             String query = "SELECT * FROM DetailCommande "
                     + "JOIN Livre ON Livre.codeISBN = DetailCommande.codeISBN "
                     + "JOIN Commande ON Commande.idCommande = DetailCommande.idCommande "
                     + "JOIN Evenement ON Evenement.idEvenement = DetailCommande.idEvenement ";
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return rs;
     }
 
     public void sqlUpdate(DetailCommande dc, int idDetailCommande) {
         try {
-            String query = "UPDATE detailCommande SET CodeISBN = ?, IdCommande = ?, IdEvenement = ?, QuantiteDetailCommance = ?, PrixHTDetailCommande = ?, TauxTVADetailCommannde = ? "
-                    + "JOIN Livre ON Livre.codeISBN = DetailCommande.codeISBN "
-                    + "JOIN Commande ON Commande.idCommande = DetailCommande.idCommande "
-                    + "JOIN Evenement ON Evenement.idEvenement = DetailCommande.idEvenement "
+            String query = "UPDATE detailCommande SET CodeISBN = ?, "
+                    + "IdCommande = ?, IdEvenement = ?, QuantiteDetailCommance = ?, "
+                    + "PrixHTDetailCommande = ?, TauxTVADetailCommannde = ? "
                     + "WHERE idDetailCommande = " + idDetailCommande;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, dc.getCodeISBN());
