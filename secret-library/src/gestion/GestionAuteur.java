@@ -54,7 +54,8 @@ public class GestionAuteur {
     
     public void sqlUpdate(Auteur auteur, int idAuteur){
         try {
-            String query = "UPDATE auteur SET idAuteur=?, nomAuteur=?, prenomAuteur=?";
+            String query = "UPDATE auteur SET idAuteur=?, nomAuteur=?, prenomAuteur=?"
+                    +"WHERE idAuteur="+idAuteur;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, auteur.getIdAuteur());
             stmt.setString(2, auteur.getNomAuteur());
@@ -67,7 +68,8 @@ public class GestionAuteur {
     
     public void sqlDelete(Auteur auteur, int idAuteur){
         try {
-            String query = "DELETE FROM auteur";
+            String query = "DELETE FROM auteur"
+                    +"WHERE idAuteur="+idAuteur;
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
