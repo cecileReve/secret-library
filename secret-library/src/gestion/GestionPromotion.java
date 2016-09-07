@@ -57,7 +57,7 @@ public class GestionPromotion {
                     + "IDEVENEMENT=?, "
                     + "CODEISBN =? "
                     + "WHERE idEvenement = " + idEvenement
-                    + "AND codeISBN = " + codeISBN;
+                    + " AND codeISBN = " + codeISBN;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, idEvenement);
             stmt.setString(2, codeISBN);
@@ -69,7 +69,7 @@ public class GestionPromotion {
 
     public void sqlDelete(Promotion p, int idEvenement, String codeISBN) {
         String query = "DELETE FROM client WHERE idEvenement = " + idEvenement
-                + "AND codeISBN = " + codeISBN;
+                + " AND codeISBN = " + codeISBN;
         Statement stmt;
         try {
             stmt = connexion.createStatement();
