@@ -3,6 +3,7 @@ package gestion;
 import classe.Client;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -26,8 +27,7 @@ public class GestionClient {
 
     public void sqlCreate(Client c) {
         try {
-            String query = "INSERT INTO client VALUES(?,?,?,?,?,?,?,?,?,?)"
-                    + "JOIN Statut ON Statut.idStatut = Client.idStatut";
+            String query = "INSERT INTO client VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, c.getIdStatut());
             stmt.setString(2, c.getNomClient());
@@ -45,22 +45,25 @@ public class GestionClient {
         }
     }
 
-    public void sqlRead() {
+    public ResultSet sqlRead() {
+        ResultSet rs = null;
         try {
-            String query = "SELECT * FROM client"
-                    + "JOIN Statut ON Statut.idStatut = Client.idStatut";
+            String query = "SELECT * FROM client";
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return rs;
     }
-
+   
     public void sqlUpdate(Client c, int idClient) {
         try {
-            String query = "UPDATE Client VALUES(?,?,?,?,?,?,?,?,?,?)"
-                    + "JOIN Statut ON Statut.idStatut = Client.idStatut";
+            String query = "UPDATE Client SET idStatut = ?, nomClient = ?, prenomClient = ?, "
+                    + "telClient = ?, naissance client = ?, emailClient = ?, "
+                    + "mdpClient = ?, dateInscription = ?, dateDesinscription = ?, "
+                    + "commentaireClient = ? "
+                    + "WHERE idClient = " + idClient;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, c.getIdStatut());
             stmt.setString(2, c.getNomClient());
@@ -79,6 +82,7 @@ public class GestionClient {
     }
 
     public void sqlDelete(Client c, int idClient) {
+        
         try {
             String query = "DELETE FROM client WHERE idClient = " + idClient;
             Statement stmt = connexion.createStatement();
@@ -86,6 +90,7 @@ public class GestionClient {
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
 
 }
