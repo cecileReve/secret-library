@@ -27,12 +27,7 @@ public class GestionCommande {
 
     public void sqlCreate(Commande commande) {
         try {
-            String query = "INSERT INTO COMMANDE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
-                    + "JOIN ADRESSE a1 ON COMMANDE.IDADRESSEFACTURATION = a1.IDADRESSE"
-                    + "JOIN ADRESSE a2 ON COMMANDE.IDADRESSELIVRAISON = a2.IDADRESSE"
-                    + "JOIN CLIENT ON COMMANDE.IDCLIENT = CLIENT.IDCLIENT"
-                    + "JOIN TRANSPORTEUR ON COMMANDE.CODETRANSPORTEUR = TRANSPORTEUR.CODETRANSPORTEUR"
-                    + "JOIN STATUT ON COMMANDE.IDSTATUT = STATUT.IDSTATUT";
+            String query = "INSERT INTO COMMANDE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, commande.getIdCommande());
             stmt.setString(2, commande.getCodeTransporteur());
@@ -49,16 +44,11 @@ public class GestionCommande {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public ResultSet sqlRead(){
+
+    public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT COMMANDE"
-                    + "JOIN ADRESSE a1 ON COMMANDE.IDADRESSEFACTURATION = a1.IDADRESSE"
-                    + "JOIN ADRESSE a2 ON COMMANDE.IDADRESSELIVRAISON = a2.IDADRESSE"
-                    + "JOIN CLIENT ON COMMANDE.IDCLIENT = CLIENT.IDCLIENT"
-                    + "JOIN TRANSPORTEUR ON COMMANDE.CODETRANSPORTEUR = TRANSPORTEUR.CODETRANSPORTEUR"
-                    + "JOIN STATUT ON COMMANDE.IDSTATUT = STATUT.IDSTATUT";
+            String query = "SELECT * FROM COMMANDE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -66,16 +56,11 @@ public class GestionCommande {
         }
         return rs;
     }
-    
-    public void sqlUpdate(Commande commande, int idCommande){
+
+    public void sqlUpdate(Commande commande, int idCommande) {
         try {
             String query = "UPDATE COMMANDE SET IDCOMMANDE=?, CODETRANSPORTEUR=?, IDADRESSELIVRAISON=?, IDADRESSEFACTURATION=?, IDCLIENT=?, IDSTATUT=?, DATECOMMANDE=?, IPCOMMANDE=?, NUMEROTRANSACTION=?, COMMENTAIRECOMMANDE=? "
-                    + "JOIN ADRESSE a1 ON COMMANDE.IDADRESSEFACTURATION = a1.IDADRESSE"
-                    + "JOIN ADRESSE a2 ON COMMANDE.IDADRESSELIVRAISON = a2.IDADRESSE"
-                    + "JOIN CLIENT ON COMMANDE.IDCLIENT = CLIENT.IDCLIENT"
-                    + "JOIN TRANSPORTEUR ON COMMANDE.CODETRANSPORTEUR = TRANSPORTEUR.CODETRANSPORTEUR"
-                    + "JOIN STATUT ON COMMANDE.IDSTATUT = STATUT.IDSTATUT"
-                    + "WHERE IDCOMMANDE ="+ idCommande;
+                    + "WHERE IDCOMMANDE =" + idCommande;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, commande.getIdCommande());
             stmt.setString(2, commande.getCodeTransporteur());
@@ -92,18 +77,14 @@ public class GestionCommande {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void sqlDelete (Commande commande, int idCommande){
+
+    public void sqlDelete(Commande commande, int idCommande) {
         try {
-            String query = "DELETE FROM COMMANDE"
-                    + "JOIN ADRESSE a1 ON COMMANDE.IDADRESSEFACTURATION = a1.IDADRESSE"
-                    + "JOIN ADRESSE a2 ON COMMANDE.IDADRESSELIVRAISON = a2.IDADRESSE"
-                    + "JOIN CLIENT ON COMMANDE.IDCLIENT = CLIENT.IDCLIENT"
-                    + "JOIN TRANSPORTEUR ON COMMANDE.CODETRANSPORTEUR = TRANSPORTEUR.CODETRANSPORTEUR"
-                    + "JOIN STATUT ON COMMANDE.IDSTATUT = STATUT.IDSTATUT"
-                    + "WHERE IDCOMMANDE ="+ idCommande;
-            Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            String query = "UPDATE COMMANDE SET IDSTATUT=?"
+                    + "WHERE IDCOMMANDE =" + idCommande;
+            PreparedStatement stmt = connexion.prepareStatement(query);
+            stmt.setInt(1, 205);
+            stmt.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
