@@ -1,7 +1,6 @@
 package gestion;
 
-import classe.DetailCommande;
-import classe.Promotion;
+import classe.Theme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +9,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GestionPromotion {
+public class GestionTheme {
 
     private Connection connexion;
+
+    public GestionTheme(Connection connexion) {
+        this.connexion = connexion;
+    }
 
     public Connection getConnexion() {
         return connexion;
@@ -22,27 +25,23 @@ public class GestionPromotion {
         this.connexion = connexion;
     }
 
-    public GestionPromotion(Connection connexion) {
-        this.connexion = connexion;
-    }
+    public void sqlCreate(Theme theme) {
 
-    public void sqlCreate(Promotion p) {
         try {
-            String query = "INSERT INTO promotion (IDEVENEMENT,CODEISBN) VALUES(?, ?)";
-            PreparedStatement stmt = connexion.prepareStatement(query);
-            stmt.setInt(1, p.getIdEvenement());
-            stmt.setString(2, p.getCodeISBN());
+            String query = "INSERT INTO THEME(NOMTHEME)VALUES (?)";
+            PreparedStatement stmt;
+            stmt = connexion.prepareStatement(query);
+            stmt.setString(1, theme.getNomTheme());
             stmt.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
+    
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM promotion ";
+            String query = "SELECT * FROM THEME ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -50,26 +49,22 @@ public class GestionPromotion {
         }
         return rs;
     }
-
-    public void sqlUpdate(Promotion p, int idEvenement, String codeISBN) {
+    
+    public void sqlUpdate(Theme theme, String nomTheme) {
         try {
             String query = "UPDATE promotion SET "
-                    + "IDEVENEMENT=?, "
-                    + "CODEISBN =? "
-                    + "WHERE idEvenement = " + idEvenement
-                    + "AND codeISBN = " + codeISBN;
+                    + "NOMTHEME =? "
+                    + "WHERE NOMTHEME = " + nomTheme;
             PreparedStatement stmt = connexion.prepareStatement(query);
-            stmt.setInt(1, idEvenement);
-            stmt.setString(2, codeISBN);
+            stmt.setString(1, nomTheme);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void sqlDelete(Promotion p, int idEvenement, String codeISBN) {
-        String query = "DELETE FROM client WHERE idEvenement = " + idEvenement
-                + "AND codeISBN = " + codeISBN;
+    
+    public void sqlDelete(Theme theme, String nomTheme) {
+        String query = "DELETE FROM client WHERE idEvenement = " + nomTheme;
         Statement stmt;
         try {
             stmt = connexion.createStatement();
@@ -79,5 +74,4 @@ public class GestionPromotion {
         }
 
     }
-
 }

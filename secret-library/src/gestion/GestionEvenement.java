@@ -26,7 +26,9 @@ public class GestionEvenement {
 
     public void sqlCreate(Evenement e) {
         try {
-            String query = "INSERT INTO Evenement VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO "
+                    + "Evenement (NomEvenement, PromotionEvenement, LogoEvenement, DateDebutEvenement, DateFinEvenement, CommentaireEvenement) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, e.getNomEvenement());
             stmt.setInt(2, e.getPromotionEvenement());
@@ -52,7 +54,13 @@ public class GestionEvenement {
 
     public void sqlUpdate(Evenement e, int idEvenement) {
         try {
-            String query = "UPDATE Evenement SET NomEvenement = ?, PromotionEvenement = ?, LogoEvenement = ?, DateDebutEvenement = ?, DateFinEvenement = ?, CommentaireEvenement = ? "
+            String query = "UPDATE Evenement SET "
+                    + "NomEvenement = ?, "
+                    + "PromotionEvenement = ?, "
+                    + "LogoEvenement = ?, "
+                    + "DateDebutEvenement = ?, "
+                    + "DateFinEvenement = ?, "
+                    + "CommentaireEvenement = ? "
                     + "WHERE idEvenement = " + idEvenement;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, e.getNomEvenement());
