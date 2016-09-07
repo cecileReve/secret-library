@@ -51,11 +51,8 @@ public class GestionClient {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-<<<<<<< HEAD
+
             String query = "SELECT * FROM client";
-=======
-            String query = "SELECT * FROM CLIENT";
->>>>>>> branchegestionadresse
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException ex) {
@@ -63,14 +60,10 @@ public class GestionClient {
         }
         return rs;
     }
-   
+
     public void sqlUpdate(Client c, int idClient) {
         try {
-<<<<<<< HEAD
-            String query = "UPDATE Client SET idStatut = ?, nomClient = ?, prenomClient = ?, "
-                    + "telClient = ?, naissance client = ?, emailClient = ?, "
-                    + "mdpClient = ?, dateInscription = ?, dateDesinscription = ?, "
-=======
+
             String query = "UPDATE Client SET "
                     + "idStatut = ?, "
                     + "nomClient = ?, "
@@ -81,7 +74,6 @@ public class GestionClient {
                     + "mdpClient = ?, "
                     + "dateInscription = ?, "
                     + "dateDesinscription = ?, "
->>>>>>> branchegestionadresse
                     + "commentaireClient = ? "
                     + "WHERE idClient = " + idClient;
             PreparedStatement stmt = connexion.prepareStatement(query);
@@ -102,7 +94,7 @@ public class GestionClient {
     }
 
     public void sqlDelete(Client c, int idClient) {
-        
+
         try {
             String query = "DELETE FROM client WHERE idClient = " + idClient;
             Statement stmt = connexion.createStatement();
@@ -110,7 +102,7 @@ public class GestionClient {
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 
 }
