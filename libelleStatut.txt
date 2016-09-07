@@ -1,0 +1,38 @@
+Client (100 --> 199)
+100 --> Compte ouvert
+101 --> Compte fermé
+102 --> Compte suspendu
+103 --> Compte bloqué
+104 --> 
+105 -->
+106 -->
+107 -->
+108 -->
+109 -->
+110 -->
+
+Commande (200 --> 299)
+200 --> En cours de préparation
+201 --> En attente de prise en charge par le transporteur
+202 --> Prise en charge par le transporteur
+203 --> En cours de livraison
+204 --> Livrée
+205 -->
+206 -->
+207 -->
+208 -->
+209 -->
+210 -->
+
+Livre (300 --> 399)
+300 --> En stock
+301 --> Plus en stock en cours de réapprovisionnement
+302 --> N'est plus disponible
+303 --> Nouveauté
+304 --> En promo
+305 -->
+306 -->
+307 -->
+308 -->
+309 -->
+310 -->
