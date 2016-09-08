@@ -37,7 +37,8 @@ public class GestionEvenement {
             stmt.setDate(4, e.getDateDebutEvenement());
             stmt.setDate(5, e.getDateFinEvenement());
             stmt.setString(6, e.getCommentaireEvenement());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEvenement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,6 +50,7 @@ public class GestionEvenement {
             String query = "SELECT * FROM Evenement";
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEvenement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +75,7 @@ public class GestionEvenement {
             stmt.setDate(5, e.getDateFinEvenement());
             stmt.setString(6, e.getCommentaireEvenement());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEvenement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +85,8 @@ public class GestionEvenement {
         try {
             String query = "DELETE FROM Evenement WHERE idEvenement = " + idEvenement;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEvenement.class.getName()).log(Level.SEVERE, null, ex);
         }

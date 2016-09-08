@@ -32,7 +32,8 @@ public class GestionEnregistrementLivraison {
             stmt.setInt(1, el.getIdClient());
             stmt.setInt(2, el.getIdAdresse());
             stmt.setTimestamp(3, el.getDateEnregistrementLivraison());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEnregistrementLivraison.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,6 +48,7 @@ public class GestionEnregistrementLivraison {
                     + "JOIN adresse ON adresse.idAdresse = enregistrementLivraison.idAdresse";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEnregistrementLivraison.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,25 +63,25 @@ public class GestionEnregistrementLivraison {
             stmt.setInt(1, el.getIdClient());
             stmt.setInt(2, el.getIdAdresse());
             stmt.setTimestamp(3, el.getDateEnregistrementLivraison());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEnregistrementLivraison.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    public void sqlDelete(EnregistrementLivraison el, int idClient, int idAdresse){
+
+    public void sqlDelete(EnregistrementLivraison el, int idClient, int idAdresse) {
         try {
             String query = "DELETE FROM enregistrementLivraison WHERE idClient=" + idClient
                     + "AND idAdresse=" + idAdresse;
-            
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEnregistrementLivraison.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
 }

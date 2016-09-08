@@ -32,7 +32,8 @@ public class GestionTheme {
             PreparedStatement stmt;
             stmt = connexion.prepareStatement(query);
             stmt.setString(1, theme.getNomTheme());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,6 +45,7 @@ public class GestionTheme {
             String query = "SELECT * FROM THEME ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,6 +60,7 @@ public class GestionTheme {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, nomTheme);
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +71,8 @@ public class GestionTheme {
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }

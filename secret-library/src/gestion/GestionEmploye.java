@@ -50,6 +50,7 @@ public class GestionEmploye {
             stmt.setString(7, employe.getLoginEmploye());
             stmt.setString(8, employe.getMdpEmploye());
             stmt.setString(9, employe.getCommentaireEmploye());
+            stmt.executeUpdate();
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,6 +64,7 @@ public class GestionEmploye {
             String query = "SELECT * FROM employe";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,7 +95,8 @@ public class GestionEmploye {
         try {
             String query = "DELETE FROM employe WHERE NUMSECUEMPLOYE = " + numSecuEmploye;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }

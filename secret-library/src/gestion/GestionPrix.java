@@ -32,7 +32,8 @@ public class GestionPrix {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setFloat(1, pr.getMontantHT());
             stmt.setDate(2, pr.getDateMajPrix());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrix.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,6 +44,7 @@ public class GestionPrix {
             String query = "SELECT * FROM Prix";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrix.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,6 +59,7 @@ public class GestionPrix {
             stmt.setFloat(1, pr.getMontantHT());
             stmt.setDate(2, pr.getDateMajPrix());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrix.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +69,8 @@ public class GestionPrix {
         try {
             String query = "DELETE FROM Prix WHERE idPrix = " + idPrix;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }

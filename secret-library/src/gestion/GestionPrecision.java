@@ -37,7 +37,8 @@ public class GestionPrecision {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, st.getNomSousTheme());
             stmt.setString(2, livre.getcodeISBN());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrecision.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,6 +50,7 @@ public class GestionPrecision {
             String query = "SELECT * FROM PRECISION ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrecision.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +68,7 @@ public class GestionPrecision {
             stmt.setString(1, precision.getNomSousTheme());
             stmt.setString(2, precision.getCodeISBN());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrecision.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +80,8 @@ public class GestionPrecision {
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrecision.class.getName()).log(Level.SEVERE, null, ex);
         }

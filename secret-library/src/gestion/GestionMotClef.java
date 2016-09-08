@@ -30,7 +30,8 @@ public class GestionMotClef {
             String query = "INSERT INTO motClef Values(?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, motClef.getNomMotClef());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionMotClef.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,6 +44,7 @@ public class GestionMotClef {
             String query = "SELECT * FROM motClef";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionMotClef.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,6 +58,7 @@ public class GestionMotClef {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, motClef.getNomMotClef());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionMotClef.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,7 +68,8 @@ public class GestionMotClef {
         try {
             String query = "DELETE FROM motClef WHERE nomMotClef = " + nomMotClef;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionMotClef.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,7 +36,8 @@ private Connection connexion;
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, ent.getIdEntreprise());
             stmt.setInt(2, adr.getIdAdresse());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSiege.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,6 +49,7 @@ private Connection connexion;
             String query = "SELECT * FROM SIEGE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSiege.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,6 +67,7 @@ private Connection connexion;
             stmt.setInt(1, siege.getIdEntreprise());
             stmt.setInt(2, siege.getIdAdresse());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSiege.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +79,8 @@ private Connection connexion;
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSiege.class.getName()).log(Level.SEVERE, null, ex);
         }

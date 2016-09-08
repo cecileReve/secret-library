@@ -31,7 +31,8 @@ public class GestionPanier {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, p.getIdClient());
             stmt.setString(2, p.getNomPanier());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPanier.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,6 +46,7 @@ public class GestionPanier {
                     + "JOIN client ON client.idClient = panier.idPanier";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPanier.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +59,8 @@ public class GestionPanier {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, p.getIdClient());
             stmt.setString(2, p.getNomPanier());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPanier.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +70,8 @@ public class GestionPanier {
         try {
             String query = "DELETE FROM Panier WHERE idPanier=" + idPanier;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPanier.class.getName()).log(Level.SEVERE, null, ex);
         }

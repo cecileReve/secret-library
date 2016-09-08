@@ -63,7 +63,7 @@ public class GestionLivre {
             Statement stmt = connexion.createStatement();
             String query = "SELECT * FROM LIVRE";
             rs = stmt.executeQuery(query);
-
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionLivre.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,6 +91,7 @@ public class GestionLivre {
             stmt.setFloat(12, livre.getPoidsLivre());
             stmt.setString(13, livre.getCommentaireLivre());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionLivre.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,6 +103,7 @@ public class GestionLivre {
             String query = "DELETE FROM LIVRE "
                     + "WHERE CODEISBN = " + codeISBN;
             stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionLivre.class.getName()).log(Level.SEVERE, null, ex);
         }

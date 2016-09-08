@@ -31,7 +31,8 @@ public class GestionSousTheme {
             String query = "INSERT INTO SousTheme VALUES(?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, sst.getNomSousTheme());
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,6 +44,7 @@ public class GestionSousTheme {
             String query = "SELECT * FROM SousTheme";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,6 +58,7 @@ public class GestionSousTheme {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, sst.getNomSousTheme());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,7 +68,8 @@ public class GestionSousTheme {
         try {
             String query = "DELETE FROM SousTheme WHERE nomSousTheme = " + nomSousTheme;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }

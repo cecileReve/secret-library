@@ -32,7 +32,8 @@ public class GestionPromotion {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, p.getIdEvenement());
             stmt.setString(2, p.getCodeISBN());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,6 +46,7 @@ public class GestionPromotion {
             String query = "SELECT * FROM promotion ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,6 +64,7 @@ public class GestionPromotion {
             stmt.setInt(1, idEvenement);
             stmt.setString(2, codeISBN);
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,7 +76,8 @@ public class GestionPromotion {
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }
