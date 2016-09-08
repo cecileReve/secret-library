@@ -37,6 +37,7 @@ public class testaurele extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -47,11 +48,11 @@ public class testaurele extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
+            .addGap(0, 806, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 522, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab1", jInternalFrame1);
@@ -62,11 +63,11 @@ public class testaurele extends javax.swing.JFrame {
         jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
         jInternalFrame2Layout.setHorizontalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
+            .addGap(0, 806, Short.MAX_VALUE)
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 522, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab2", jInternalFrame2);
@@ -77,11 +78,11 @@ public class testaurele extends javax.swing.JFrame {
         jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
         jInternalFrame3Layout.setHorizontalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
+            .addGap(0, 806, Short.MAX_VALUE)
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 522, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab3", jInternalFrame3);
@@ -119,10 +120,23 @@ public class testaurele extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab4", jInternalFrame4);
 
-        getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 0, 750, 540);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 808, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 544, Short.MAX_VALUE)
+        );
 
-        setSize(new java.awt.Dimension(765, 577));
+        jTabbedPane1.addTab("tab5", jPanel1);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 810, 570);
+
+        setSize(new java.awt.Dimension(822, 606));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,6 +183,7 @@ public class testaurele extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
     private javax.swing.JInternalFrame jInternalFrame4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
