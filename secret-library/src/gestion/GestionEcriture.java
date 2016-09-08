@@ -31,7 +31,8 @@ public class GestionEcriture {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, ecriture.getIdAuteur());
             stmt.setString(2, ecriture.getCodeISBN());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,6 +44,7 @@ public class GestionEcriture {
             String query = "SELECT * FROM ecriture";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,6 +60,7 @@ public class GestionEcriture {
             stmt.setInt(1, ecriture.getIdAuteur());
             stmt.setString(2, ecriture.getCodeISBN());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,7 +73,8 @@ public class GestionEcriture {
                     + "WHERE idAuteur=" + idAuteur
                     + "AND codeISBN=" + codeISBN;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
         }

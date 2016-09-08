@@ -30,7 +30,8 @@ public class GestionEditeur {
             String query = "INSERT INTO Editeur VALUES(?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, ed.getNomEditeur());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,6 +43,7 @@ public class GestionEditeur {
             String query = "SELECT * FROM Editeur";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,6 +57,7 @@ public class GestionEditeur {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, ed.getNomEditeur());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,7 +67,8 @@ public class GestionEditeur {
         try {
             String query = "DELETE FROM Editeur WHERE nomEditeur = " + nomEditeur;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }
