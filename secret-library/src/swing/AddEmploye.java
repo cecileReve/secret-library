@@ -8,8 +8,12 @@ package swing;
 import classe.Employe;
 import gestion.GestionEmploye;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import microsoft.sql.DateTimeOffset;
 import util.BdDConnexion;
 
 /**
@@ -17,7 +21,7 @@ import util.BdDConnexion;
  * @author cdi304
  */
 public class AddEmploye extends javax.swing.JDialog {
-    
+
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
 
@@ -29,7 +33,6 @@ public class AddEmploye extends javax.swing.JDialog {
         connexion = bdDConnexion.connectDataBase();
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +56,6 @@ public class AddEmploye extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
@@ -61,6 +63,7 @@ public class AddEmploye extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jCalendarDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -110,8 +113,6 @@ public class AddEmploye extends javax.swing.JDialog {
         jTextField2.setBounds(160, 120, 380, 30);
         getContentPane().add(jTextField3);
         jTextField3.setBounds(160, 160, 380, 30);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(160, 200, 380, 30);
         getContentPane().add(jTextField5);
         jTextField5.setBounds(160, 240, 380, 30);
         getContentPane().add(jTextField6);
@@ -136,6 +137,8 @@ public class AddEmploye extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 400, 380, 70);
+        getContentPane().add(jCalendarDate);
+        jCalendarDate.setBounds(160, 200, 380, 29);
 
         setSize(new java.awt.Dimension(600, 605));
         setLocationRelativeTo(null);
@@ -143,15 +146,17 @@ public class AddEmploye extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        java.sql.Date sqlDate = new java.sql.Date(jCalendarDate.getDate().getTime());
+        
         GestionEmploye gestEmp = new GestionEmploye(connexion);
-        Employe emp = new Employe(jTextField1.getText(), 
-                jTextField2.getText(), 
-                jTextField3.getText(), 
-                new java.sql.Date(new java.util.Date().getTime()),
-                jTextField5.getText(), 
-                jTextField6.getText(), 
-                jTextField7.getText(), 
-                jTextField8.getText(), 
+        Employe emp = new Employe(jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText(),
+                sqlDate,
+                jTextField5.getText(),
+                jTextField6.getText(),
+                jTextField7.getText(),
+                jTextField8.getText(),
                 jTextArea1.getText());
         gestEmp.sqlCreate(emp);
         this.dispose();
@@ -201,6 +206,7 @@ public class AddEmploye extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jCalendarDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -216,7 +222,6 @@ public class AddEmploye extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
