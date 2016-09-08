@@ -49,7 +49,6 @@ public class GestionAuteur {
             String query = "SELECT * FROM AUTEUR";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }

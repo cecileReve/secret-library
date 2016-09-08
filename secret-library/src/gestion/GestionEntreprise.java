@@ -45,7 +45,6 @@ public class GestionEntreprise {
             String query = "SELECT * FROM Entreprise";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEntreprise.class.getName()).log(Level.SEVERE, null, ex);
         }

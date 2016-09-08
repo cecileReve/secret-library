@@ -67,7 +67,6 @@ public class GestionAffinage {
             stmt.setString(1, affinage.getNomTheme());
             stmt.setString(2, affinage.getNomSousTheme());
             stmt.executeUpdate();
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAffinage.class.getName()).log(Level.SEVERE, null, ex);
         }

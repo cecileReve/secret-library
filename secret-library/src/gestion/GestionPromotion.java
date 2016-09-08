@@ -46,7 +46,6 @@ public class GestionPromotion {
             String query = "SELECT * FROM promotion ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPromotion.class.getName()).log(Level.SEVERE, null, ex);
         }

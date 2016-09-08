@@ -50,7 +50,6 @@ public class GestionDefinition {
             String query = "SELECT * FROM DEFINITION";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDefinition.class.getName()).log(Level.SEVERE, null, ex);
         }

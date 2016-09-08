@@ -50,7 +50,6 @@ public class GestionEvenement {
             String query = "SELECT * FROM Evenement";
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEvenement.class.getName()).log(Level.SEVERE, null, ex);
         }
