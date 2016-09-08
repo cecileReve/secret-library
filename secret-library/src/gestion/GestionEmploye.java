@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -100,6 +101,34 @@ public class GestionEmploye {
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Vector<Employe> vecteurEmployer() {
+        Vector<Employe> employes = new Vector<>();
+        ResultSet result = sqlRead();
+        try {
+            while (result.next()) {
+                employes.add(
+                        new Employe(
+                                result.getString("NUMSECUEMPLOYE"),
+                                result.getString("NOMEMPLOYE"),
+                                result.getString("PRENOMEMPLOYE"),
+                                result.getDate("DATENAISSANCEEMPLOYE"),
+                                result.getString("TELEMPLOYE"),
+                                result.getString("EMAILEMPLOYE"),
+                                result.getString("LOGINEMPLOYE"),
+                                result.getString("MDPEMPLOYE"),
+                                result.getString("COMMENTAIREEMPLOYE")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            result.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return employes;
     }
 
 }

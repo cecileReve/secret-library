@@ -22,6 +22,20 @@ public class Employe {
         this.numSecuEmploye = numSecuEmploye;
     }
 
+    public Employe(String numSecuEmploye, String nomEmploye, String prenomEmploye, Date dateNaissanceEmploye, String telEmploye, String mailEmploye, String loginEmploye, String mdpEmploye, String commentaireEmploye) {
+        this.numSecuEmploye = numSecuEmploye;
+        this.nomEmploye = nomEmploye;
+        this.prenomEmploye = prenomEmploye;
+        this.dateNaissanceEmploye = dateNaissanceEmploye;
+        this.telEmploye = telEmploye;
+        this.mailEmploye = mailEmploye;
+        this.loginEmploye = loginEmploye;
+        this.mdpEmploye = mdpEmploye;
+        this.commentaireEmploye = commentaireEmploye;
+    }
+    
+    
+
     public String getNumSecuEmploye() {
         return numSecuEmploye;
     }
