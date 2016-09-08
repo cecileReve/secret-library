@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,7 +65,7 @@ public class GestionEmploye {
             String query = "SELECT * FROM employe";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
+//            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,6 +101,32 @@ public class GestionEmploye {
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Vector vecteurEmployer() {
+        Vector employes = new Vector();
+        ResultSet result = sqlRead();
+        try {
+            while (result.next()) {
+                employes.add(result.getString("NUMSECUEMPLOYE"));
+                employes.add(result.getString("NOMEMPLOYE"));
+                employes.add(result.getString("PRENOMEMPLOYE"));
+                employes.add(result.getDate("DATENAISSANCEEMPLOYE"));
+                employes.add(result.getString("TELEMPLOYE"));
+                employes.add(result.getString("EMAILEMPLOYE"));
+                employes.add(result.getString("LOGINEMPLOYE"));
+                employes.add(result.getString("MDPEMPLOYE"));
+                employes.add(result.getString("COMMENTAIREEMPLOYE"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            result.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return employes;
     }
 
 }
