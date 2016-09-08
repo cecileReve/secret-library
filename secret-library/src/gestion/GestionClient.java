@@ -56,7 +56,6 @@ public class GestionClient {
             String query = "SELECT * FROM client";
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }

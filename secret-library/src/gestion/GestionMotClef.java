@@ -44,7 +44,6 @@ public class GestionMotClef {
             String query = "SELECT * FROM motClef";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionMotClef.class.getName()).log(Level.SEVERE, null, ex);
         }

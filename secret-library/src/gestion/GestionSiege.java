@@ -49,7 +49,6 @@ private Connection connexion;
             String query = "SELECT * FROM SIEGE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSiege.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -48,7 +48,6 @@ public class GestionEnregistrementLivraison {
                     + "JOIN adresse ON adresse.idAdresse = enregistrementLivraison.idAdresse";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEnregistrementLivraison.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -45,7 +45,6 @@ public class GestionTheme {
             String query = "SELECT * FROM THEME ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionTheme.class.getName()).log(Level.SEVERE, null, ex);
         }

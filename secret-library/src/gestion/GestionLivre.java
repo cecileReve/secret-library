@@ -64,7 +64,6 @@ public class GestionLivre {
             Statement stmt = connexion.createStatement();
             String query = "SELECT * FROM LIVRE";
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionLivre.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -33,8 +33,7 @@ public class GestionCout {
             stmt = connexion.prepareStatement(query);
             stmt.setString(1, cout.getCodeISBN());
             stmt.setInt(2, cout.getIdPrix());
-            stmt.executeUpdate();
-            stmt.close();            
+            stmt.executeUpdate();            
         } catch (SQLException ex) {
             Logger.getLogger(GestionCout.class.getName()).log(Level.SEVERE, null, ex);
         }

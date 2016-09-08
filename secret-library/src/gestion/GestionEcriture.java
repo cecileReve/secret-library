@@ -44,7 +44,6 @@ public class GestionEcriture {
             String query = "SELECT * FROM ecriture";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEcriture.class.getName()).log(Level.SEVERE, null, ex);
         }

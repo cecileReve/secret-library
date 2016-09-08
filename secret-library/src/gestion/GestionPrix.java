@@ -44,7 +44,6 @@ public class GestionPrix {
             String query = "SELECT * FROM Prix";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrix.class.getName()).log(Level.SEVERE, null, ex);
         }

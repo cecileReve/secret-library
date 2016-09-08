@@ -45,7 +45,6 @@ public class GestionCategorie {
             String query = "SELECT * FROM CATEGORIE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }

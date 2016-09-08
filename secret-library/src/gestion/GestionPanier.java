@@ -46,7 +46,6 @@ public class GestionPanier {
                     + "JOIN client ON client.idClient = panier.idPanier";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPanier.class.getName()).log(Level.SEVERE, null, ex);
         }

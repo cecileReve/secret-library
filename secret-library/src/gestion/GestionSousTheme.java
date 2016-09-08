@@ -44,7 +44,6 @@ public class GestionSousTheme {
             String query = "SELECT * FROM SousTheme";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionSousTheme.class.getName()).log(Level.SEVERE, null, ex);
         }

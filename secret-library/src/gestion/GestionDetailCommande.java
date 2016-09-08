@@ -48,7 +48,6 @@ public class GestionDetailCommande {
             String query = "SELECT * FROM DetailCommande ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -52,7 +52,6 @@ public class GestionCommande {
             String query = "SELECT * FROM COMMANDE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }

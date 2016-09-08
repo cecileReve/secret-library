@@ -50,7 +50,6 @@ public class GestionPrecision {
             String query = "SELECT * FROM PRECISION ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionPrecision.class.getName()).log(Level.SEVERE, null, ex);
         }
