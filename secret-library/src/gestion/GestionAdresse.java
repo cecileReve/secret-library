@@ -38,7 +38,8 @@ public class GestionAdresse {
             stmt.setString(6, adresse.getCptAdresse());
             stmt.setString(7, adresse.getPaysAdresse());
             stmt.setString(8, adresse.getCommentaireAdresse());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAdresse.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +78,8 @@ public class GestionAdresse {
             stmt.setString(6, adresse.getCptAdresse());
             stmt.setString(7, adresse.getPaysAdresse());
             stmt.setString(8, adresse.getCommentaireAdresse());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAdresse.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,6 +90,7 @@ public class GestionAdresse {
             String query = "DELETE FROM ADRESSE WHERE IDADRESSE = " + idAdresse;
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAdresse.class.getName()).log(Level.SEVERE, null, ex);
         }

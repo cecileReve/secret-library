@@ -37,7 +37,8 @@ public class GestionDefinition {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, motclef.getNomMotClef());
             stmt.setString(2, livre.getcodeISBN());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDefinition.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,6 +50,7 @@ public class GestionDefinition {
             String query = "SELECT * FROM DEFINITION";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDefinition.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +68,7 @@ public class GestionDefinition {
             stmt.setString(1, definition.getNomMotClef());
             stmt.setString(2, definition.getCodeISBN());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDefinition.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +80,8 @@ public class GestionDefinition {
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDefinition.class.getName()).log(Level.SEVERE, null, ex);
         }

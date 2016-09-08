@@ -35,7 +35,8 @@ public class GestionDetailCommande {
             stmt.setInt(4, dc.getQuantiteDetailCommande());
             stmt.setFloat(5, dc.getPrixHTDetailCommande());
             stmt.setFloat(6, dc.getTauxTVADetailCommande());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,6 +48,7 @@ public class GestionDetailCommande {
             String query = "SELECT * FROM DetailCommande ";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,6 +73,7 @@ public class GestionDetailCommande {
             stmt.setFloat(5, dc.getPrixHTDetailCommande());
             stmt.setFloat(6, dc.getTauxTVADetailCommande());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +83,8 @@ public class GestionDetailCommande {
         try {
             String query = "DELETE FROM DetailCommande WHERE idDetailCOmmande = " + idDetailCommande;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionDetailCommande.class.getName()).log(Level.SEVERE, null, ex);
         }

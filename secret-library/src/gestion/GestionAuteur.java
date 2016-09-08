@@ -35,7 +35,8 @@ public class GestionAuteur {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, auteur.getNomAuteur());
             stmt.setString(2, auteur.getPrenomAuteur());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,6 +49,7 @@ public class GestionAuteur {
             String query = "SELECT * FROM AUTEUR";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,7 +67,8 @@ public class GestionAuteur {
             stmt.setInt(1, auteur.getIdAuteur());
             stmt.setString(2, auteur.getNomAuteur());
             stmt.setString(3, auteur.getPrenomAuteur());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +79,8 @@ public class GestionAuteur {
             String query = "DELETE FROM auteur"
                     +"WHERE idAuteur="+idAuteur;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }

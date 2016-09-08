@@ -37,7 +37,8 @@ public class GestionAffinage {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, th.getNomTheme());
             stmt.setString(2, st.getNomSousTheme());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAffinage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +67,7 @@ public class GestionAffinage {
             stmt.setString(1, affinage.getNomTheme());
             stmt.setString(2, affinage.getNomSousTheme());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAffinage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +79,8 @@ public class GestionAffinage {
         Statement stmt;
         try {
             stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionAffinage.class.getName()).log(Level.SEVERE, null, ex);
         }

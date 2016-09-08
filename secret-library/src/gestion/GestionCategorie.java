@@ -32,7 +32,8 @@ public class GestionCategorie {
                     + "VALUES (?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cat.getNomCategorie());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,6 +45,7 @@ public class GestionCategorie {
             String query = "SELECT * FROM CATEGORIE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,6 +60,7 @@ public class GestionCategorie {
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cat.getNomCategorie());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +70,8 @@ public class GestionCategorie {
         try {
             String query = "DELETE FROM CATEGORIE WHERE NOMCATEGORIE = " + nomCategorie;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }

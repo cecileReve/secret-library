@@ -39,7 +39,8 @@ public class GestionCommande {
             stmt.setString(8, commande.getIpCommande());
             stmt.setString(9, commande.getNumeroTransaction());
             stmt.setString(10, commande.getCommantaireCommande());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,6 +52,7 @@ public class GestionCommande {
             String query = "SELECT * FROM COMMANDE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,7 +74,8 @@ public class GestionCommande {
             stmt.setString(8, commande.getIpCommande());
             stmt.setString(9, commande.getNumeroTransaction());
             stmt.setString(10, commande.getCommantaireCommande());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +85,8 @@ public class GestionCommande {
         try {
             String query = "DELETE FROM commande WHERE idCommande = " + idCommande;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }

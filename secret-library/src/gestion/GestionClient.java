@@ -42,7 +42,8 @@ public class GestionClient {
             stmt.setDate(8, c.getDateInscription());
             stmt.setDate(9, c.getDateDesinscription());
             stmt.setString(10, c.getCommentaireClient());
-            stmt.executeQuery();
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,6 +56,7 @@ public class GestionClient {
             String query = "SELECT * FROM client";
             Statement stmt = connexion.createStatement();
             stmt.executeQuery(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,6 +90,7 @@ public class GestionClient {
             stmt.setDate(9, c.getDateDesinscription());
             stmt.setString(10, c.getCommentaireClient());
             stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,7 +101,8 @@ public class GestionClient {
         try {
             String query = "DELETE FROM client WHERE idClient = " + idClient;
             Statement stmt = connexion.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
