@@ -5,19 +5,31 @@
  */
 package swing;
 
+import classe.Employe;
+import gestion.GestionEmploye;
+import java.sql.Connection;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import util.BdDConnexion;
+
 /**
  *
  * @author cdi304
  */
 public class AddEmploye extends javax.swing.JDialog {
+    
+    private Connection connexion = null;
+    private BdDConnexion bdDConnexion = new BdDConnexion();
 
     /**
      * Creates new form AddEmploye
      */
     public AddEmploye(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        connexion = bdDConnexion.connectDataBase();
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,8 +58,9 @@ public class AddEmploye extends javax.swing.JDialog {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -107,8 +120,6 @@ public class AddEmploye extends javax.swing.JDialog {
         jTextField7.setBounds(160, 320, 380, 30);
         getContentPane().add(jTextField8);
         jTextField8.setBounds(160, 360, 380, 30);
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(160, 400, 380, 30);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +128,14 @@ public class AddEmploye extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(160, 470, 200, 70);
+        jButton1.setBounds(160, 480, 200, 70);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(160, 400, 380, 70);
 
         setSize(new java.awt.Dimension(600, 605));
         setLocationRelativeTo(null);
@@ -125,7 +143,18 @@ public class AddEmploye extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        GestionEmploye gestEmp = new GestionEmploye(connexion);
+        Employe emp = new Employe(jTextField1.getText(), 
+                jTextField2.getText(), 
+                jTextField3.getText(), 
+                new java.sql.Date(new java.util.Date().getTime()),
+                jTextField5.getText(), 
+                jTextField6.getText(), 
+                jTextField7.getText(), 
+                jTextField8.getText(), 
+                jTextArea1.getText());
+        gestEmp.sqlCreate(emp);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -182,6 +211,8 @@ public class AddEmploye extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -190,6 +221,5 @@ public class AddEmploye extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

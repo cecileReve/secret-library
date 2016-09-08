@@ -36,7 +36,7 @@ public class GestionEmploye {
                     + "prenomEmploye,"
                     + "dateNaissanceEmploye,"
                     + "telEmploye,"
-                    + "mailEmploye,"
+                    + "emailEmploye,"
                     + "loginEmploye,"
                     + "mdpEmploye,"
                     + "commentaireEmploye) "
