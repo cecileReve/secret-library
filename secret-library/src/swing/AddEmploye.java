@@ -147,7 +147,7 @@ public class AddEmploye extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         java.sql.Date sqlDate = new java.sql.Date(jCalendarDate.getDate().getTime());
-        
+          
         GestionEmploye gestEmp = new GestionEmploye(connexion);
         Employe emp = new Employe(jTextField1.getText(),
                 jTextField2.getText(),
