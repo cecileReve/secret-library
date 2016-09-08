@@ -108,4 +108,9 @@ public class Employe {
         this.commentaireEmploye = commentaireEmploye;
     }
 
+    @Override
+    public String toString() {
+        return "Employe{" + "numSecuEmploye=" + numSecuEmploye + ", nomEmploye=" + nomEmploye + ", prenomEmploye=" + prenomEmploye + ", dateNaissanceEmploye=" + dateNaissanceEmploye + ", telEmploye=" + telEmploye + ", mailEmploye=" + mailEmploye + ", loginEmploye=" + loginEmploye + ", mdpEmploye=" + mdpEmploye + ", commentaireEmploye=" + commentaireEmploye + '}';
+    }
+        
 }

@@ -65,7 +65,7 @@ public class GestionEmploye {
             String query = "SELECT * FROM employe";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
-            stmt.close();
+//            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,22 +103,20 @@ public class GestionEmploye {
         }
     }
 
-    public Vector<Employe> vecteurEmployer() {
-        Vector<Employe> employes = new Vector<>();
+    public Vector vecteurEmployer() {
+        Vector employes = new Vector();
         ResultSet result = sqlRead();
         try {
             while (result.next()) {
-                employes.add(
-                        new Employe(
-                                result.getString("NUMSECUEMPLOYE"),
-                                result.getString("NOMEMPLOYE"),
-                                result.getString("PRENOMEMPLOYE"),
-                                result.getDate("DATENAISSANCEEMPLOYE"),
-                                result.getString("TELEMPLOYE"),
-                                result.getString("EMAILEMPLOYE"),
-                                result.getString("LOGINEMPLOYE"),
-                                result.getString("MDPEMPLOYE"),
-                                result.getString("COMMENTAIREEMPLOYE")));
+                employes.add(result.getString("NUMSECUEMPLOYE"));
+                employes.add(result.getString("NOMEMPLOYE"));
+                employes.add(result.getString("PRENOMEMPLOYE"));
+                employes.add(result.getDate("DATENAISSANCEEMPLOYE"));
+                employes.add(result.getString("TELEMPLOYE"));
+                employes.add(result.getString("EMAILEMPLOYE"));
+                employes.add(result.getString("LOGINEMPLOYE"));
+                employes.add(result.getString("MDPEMPLOYE"));
+                employes.add(result.getString("COMMENTAIREEMPLOYE"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestionEmploye.class.getName()).log(Level.SEVERE, null, ex);
