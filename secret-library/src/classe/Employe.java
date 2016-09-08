@@ -33,8 +33,6 @@ public class Employe {
         this.mdpEmploye = mdpEmploye;
         this.commentaireEmploye = commentaireEmploye;
     }
-    
-    
 
     public String getNumSecuEmploye() {
         return numSecuEmploye;

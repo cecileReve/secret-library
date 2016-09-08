@@ -14,15 +14,36 @@ import util.BdDConnexion;
  *
  * @author cdi304
  */
-public class AddEmploye extends javax.swing.JDialog {
+public class UpdateEmploye extends javax.swing.JDialog {
 
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
+    private Employe employe;
+
+    public Employe getEmploye() {
+        return employe;
+    }
+
+    public void setEmploye(Employe employe) {
+        this.employe = employe;
+    }
+
+    public void initChamp(Employe employe) {
+        jTextField1.setText(employe.getNumSecuEmploye());
+        jTextField2.setText(employe.getNomEmploye());
+        jTextField3.setText(employe.getPrenomEmploye());
+        jCalendarDate.setDate(employe.getDateNaissanceEmploye());
+        jTextField5.setText(employe.getTelEmploye());
+        jTextField6.setText(employe.getMailEmploye());
+        jTextField7.setText(employe.getLoginEmploye());
+        jTextField8.setText(employe.getMdpEmploye());
+        jTextArea1.setText(employe.getCommentaireEmploye());
+    }
 
     /**
      * Creates new form AddEmploye
      */
-    public AddEmploye(java.awt.Frame parent, boolean modal) {
+    public UpdateEmploye(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         connexion = bdDConnexion.connectDataBase();
         initComponents();
@@ -62,7 +83,7 @@ public class AddEmploye extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Ajout nouvel employé");
+        jLabel1.setText("Modification employe");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(143, 11, 255, 28);
 
@@ -116,7 +137,7 @@ public class AddEmploye extends javax.swing.JDialog {
         getContentPane().add(jTextField8);
         jTextField8.setBounds(160, 360, 380, 30);
 
-        jButton1.setText("Ajouter");
+        jButton1.setText("Modifier");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -141,7 +162,6 @@ public class AddEmploye extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         java.sql.Date sqlDate = new java.sql.Date(jCalendarDate.getDate().getTime());
-        
         GestionEmploye gestEmp = new GestionEmploye(connexion);
         Employe emp = new Employe(jTextField1.getText(),
                 jTextField2.getText(),
@@ -152,7 +172,8 @@ public class AddEmploye extends javax.swing.JDialog {
                 jTextField7.getText(),
                 jTextField8.getText(),
                 jTextArea1.getText());
-        gestEmp.sqlCreate(emp);
+        System.out.println("ancien num secu = " + employe.getNumSecuEmploye());
+        gestEmp.sqlUpdate(emp, employe.getNumSecuEmploye());
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -173,20 +194,27 @@ public class AddEmploye extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmploye.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddEmploye dialog = new AddEmploye(new javax.swing.JFrame(), true);
+                UpdateEmploye dialog = new UpdateEmploye(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

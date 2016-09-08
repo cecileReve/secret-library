@@ -3,6 +3,7 @@ package swing;
 import classe.Employe;
 import gestion.GestionEmploye;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -22,6 +23,23 @@ public class AffichageEmploye extends javax.swing.JFrame {
         connexion = bdDConnexion.connectDataBase();
         gestion = new GestionEmploye(connexion);
         initComponents();
+    }
+
+    public Employe getSelectedEmploye() {
+        int i = jTable1.getSelectedRow();
+        System.out.println("i = " + i);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Employe emp = new Employe(model.getValueAt(i, 0).toString(),
+                model.getValueAt(i, 1).toString(),
+                model.getValueAt(i, 2).toString(),
+                (Date) model.getValueAt(i, 3),
+                model.getValueAt(i, 4).toString(),
+                model.getValueAt(i, 5).toString(),
+                model.getValueAt(i, 6).toString(),
+                model.getValueAt(i, 7).toString(),
+                model.getValueAt(i, 8).toString());
+        System.out.println(emp);
+        return emp;
     }
 
     private DefaultTableModel initEmploye() {
@@ -144,25 +162,30 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            UpdateEmploye modif = new UpdateEmploye(this, true);
+            System.out.println("coucou");
+            modif.initChamp(getSelectedEmploye());
+            modif.setEmploye(getSelectedEmploye());
+            modif.setVisible(true);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-//        if (jTable1.isRowSelected(jTable1.getRowCount())) 
-        if(true){
+//        if (jTable1.isRowSelected(jTable1.getRowCount()))
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
             int i = jTable1.getSelectedRow();
-            System.out.println("i = "+i);
+            System.out.println("i = " + i);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             String id = model.getValueAt(i, 0).toString();
             System.out.println("id = " + id);
             int confirm = JOptionPane.showConfirmDialog(this, "Confirmer suppression BDD", "Suppression Employe",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-            if(confirm == JOptionPane.YES_OPTION) {
-            gestion.sqlDelete(id);
+            if (confirm == JOptionPane.YES_OPTION) {
+                gestion.sqlDelete(id);
             }
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
