@@ -1,16 +1,9 @@
 package test;
 
-import classe.Employe;
 import classe.Livre;
 import gestion.GestionLivre;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.BdDConnexion;
 
 /**
@@ -42,7 +35,6 @@ public class Tests {
         gl.sqlCreate(livre);
         gl.sqlDelete(livre, "1245781245789");
 
-        
     }
 
 }
