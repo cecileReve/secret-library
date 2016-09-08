@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.BdDConnexion;
 
@@ -15,9 +16,11 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
+    GestionEmploye gestion;
 
     public AffichageEmploye() {
         connexion = bdDConnexion.connectDataBase();
+        gestion = new GestionEmploye(connexion);
         initComponents();
     }
 
@@ -141,11 +144,25 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+//        if (jTable1.isRowSelected(jTable1.getRowCount())) 
+        if(true){
+            int i = jTable1.getSelectedRow();
+            System.out.println("i = "+i);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String id = model.getValueAt(i, 0).toString();
+            System.out.println("id = " + id);
+            int confirm = JOptionPane.showConfirmDialog(this, "Confirmer suppression BDD", "Suppression Employe",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(confirm == JOptionPane.YES_OPTION) {
+            gestion.sqlDelete(id);
+            }
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -201,5 +218,4 @@ public class AffichageEmploye extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

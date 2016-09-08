@@ -101,6 +101,17 @@ public class GestionEmploye {
             Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void sqlDelete(String numSecuEmploye) {
+        try {
+            String query = "DELETE FROM employe WHERE NUMSECUEMPLOYE = " + numSecuEmploye;
+            Statement stmt = connexion.createStatement();
+            stmt.executeUpdate(query);
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public Vector vecteurEmployer() {
         Vector employes = new Vector();
