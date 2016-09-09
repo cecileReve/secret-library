@@ -1,8 +1,6 @@
 package gestion;
 
 import classe.Employe;
-import classe.Livre;
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +61,7 @@ public class GestionEmploye {
     public ResultSet sqlRead() {
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM employe";
+            String query = "SELECT * FROM employe ORDER BY NOMEMPLOYE";
             Statement stmt = connexion.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
