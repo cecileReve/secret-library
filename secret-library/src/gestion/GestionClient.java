@@ -76,7 +76,7 @@ public class GestionClient {
                     + "dateInscription = ?, "
                     + "dateDesinscription = ?, "
                     + "commentaireClient = ? "
-                    + "WHERE idClient = " + idClient;
+                    + "WHERE idClient = '" + idClient +"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, c.getIdStatut());
             stmt.setString(2, c.getNomClient());
