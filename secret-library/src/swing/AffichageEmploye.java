@@ -44,15 +44,15 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private DefaultTableModel initEmploye() {
         Vector v = new Vector();
-        v.add("NUMSECUEMPLOYE");
-        v.add("NOMEMPLOYE");
-        v.add("PRENOMEMPLOYE");
-        v.add("DATENAISSANCEEMPLOYE");
-        v.add("TELEMPLOYE");
-        v.add("EMAILEMPLOYE");
-        v.add("LOGINEMPLOYE");
-        v.add("MDPEMPLOYE");
-        v.add("COMMENTAIREEMPLOYE");
+        v.add("Numéro sécu");
+        v.add("Nom");
+        v.add("Prénom");
+        v.add("Date de naissance");
+        v.add("Téléphone");
+        v.add("EMAIL");
+        v.add("Login");
+        v.add("Mot de passe");
+        v.add("Commentaire");
         return new DefaultTableModel(initVectorEmploye(), v);
     }
 
@@ -114,14 +114,14 @@ public class AffichageEmploye extends javax.swing.JFrame {
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
-        getContentPane().setLayout(null);
 
+        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(initEmploye());
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setShowHorizontalLines(false);
+        jTable1.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 11, 816, 403);
 
         jButton1.setText("Ajout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +129,6 @@ public class AffichageEmploye extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(123, 468, 102, 44);
 
         jButton2.setText("Modifier");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -138,8 +136,6 @@ public class AffichageEmploye extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(357, 468, 86, 44);
 
         jButton3.setText("Supprimer");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -147,10 +143,39 @@ public class AffichageEmploye extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(580, 468, 94, 44);
 
-        setSize(new java.awt.Dimension(908, 711));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(148, 148, 148)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)))
+                .addGap(7, 7, 7))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
+        );
+
+        setSize(new java.awt.Dimension(939, 540));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
