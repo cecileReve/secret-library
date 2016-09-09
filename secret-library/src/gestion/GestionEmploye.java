@@ -2,6 +2,7 @@ package gestion;
 
 import classe.Employe;
 import classe.Livre;
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,7 +74,7 @@ public class GestionEmploye {
 
     public void sqlUpdate(Employe employe, String numSecuEmploye) {
         try {
-            String query = "UPDATE employe SET NUMSECUEMPLOYE=?,NOMEMPLOYE=?,PRENOMEMPLOYE=?,DATENAISSANCEEMPLOYE=?,TELEMPLOYE=?,EMAILEMPLOYE=?,LOGINEMPLOYE=?,MDPEMPLOYE=?,COMMENTAIREEMPLOYE=? WHERE NUMSECUEMPLOYE = " + numSecuEmploye;
+            String query = "UPDATE employe SET NUMSECUEMPLOYE=?,NOMEMPLOYE=?,PRENOMEMPLOYE=?,DATENAISSANCEEMPLOYE=?,TELEMPLOYE=?,EMAILEMPLOYE=?,LOGINEMPLOYE=?,MDPEMPLOYE=?,COMMENTAIREEMPLOYE=? WHERE NUMSECUEMPLOYE = '" + numSecuEmploye + "'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, employe.getNumSecuEmploye());
             stmt.setString(2, employe.getNomEmploye());
@@ -88,6 +89,7 @@ public class GestionEmploye {
             stmt.close();
         } catch (SQLException ex) {
             System.err.println("3)Oops:SQL:" + ex.getErrorCode() + "/" + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -104,7 +106,7 @@ public class GestionEmploye {
     
     public void sqlDelete(String numSecuEmploye) {
         try {
-            String query = "DELETE FROM employe WHERE NUMSECUEMPLOYE = " + numSecuEmploye;
+            String query = "DELETE FROM employe WHERE NUMSECUEMPLOYE = '" + numSecuEmploye + "'";
             Statement stmt = connexion.createStatement();
             stmt.executeUpdate(query);
             stmt.close();
