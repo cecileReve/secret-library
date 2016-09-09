@@ -61,8 +61,8 @@ public class GestionDefinition {
             String query = "UPDATE DEFINITION SET "
                     + "nomMotClef=?, "
                     + "CODEISBN =? "
-                    + "WHERE nomMotClef = " + nomMotClef
-                    + " AND codeISBN = " + codeISBN;
+                    + "WHERE nomMotClef = '" + nomMotClef+"'"
+                    + " AND codeISBN = '" + codeISBN+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, definition.getNomMotClef());
             stmt.setString(2, definition.getCodeISBN());

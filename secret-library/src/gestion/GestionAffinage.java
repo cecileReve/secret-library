@@ -61,8 +61,8 @@ public class GestionAffinage {
             String query = "UPDATE AFFINAGE SET "
                     + "nomTheme=?, "
                     + "nomSousTheme =? "
-                    + "WHERE nomTheme = " + nomTheme
-                    + " AND nomSousTheme = " + nomSousTheme;
+                    + "WHERE nomTheme = '" + nomTheme+"'"
+                    + " AND nomSousTheme = '" + nomSousTheme+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, affinage.getNomTheme());
             stmt.setString(2, affinage.getNomSousTheme());

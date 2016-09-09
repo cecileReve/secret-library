@@ -54,7 +54,7 @@ public class GestionDetailPanier {
 
     public void sqlUpdate(DetailPanier dp, int idDetailPanier) {
         try {
-            String query = "UPDATE detailPanier SET idDetailPanier=?,idPanier=? WHERE idDetailPanier=" + idDetailPanier;
+            String query = "UPDATE detailPanier SET idDetailPanier=?,idPanier=? WHERE idDetailPanier='" + idDetailPanier+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, dp.getIdDetailPanier());
             stmt.setInt(2, dp.getIdPanier());

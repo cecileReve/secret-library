@@ -68,7 +68,7 @@ public class GestionAdresse {
                     + "CPTADRESSE=?, "
                     + "PAYSADRESSE=?, "
                     + "COMMENTAIREADRESSE=?, "
-                    + "WHERE IDADRESSE =" + idAdresse;
+                    + "WHERE IDADRESSE ='" + idAdresse+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, adresse.getIdAdresse());
             stmt.setString(2, adresse.getNumAdresse());

@@ -66,7 +66,7 @@ public class GestionTheme {
     }
     
     public void sqlDelete(Theme theme, String nomTheme) {
-        String query = "DELETE FROM THEME WHERE nomTheme = " + nomTheme;
+        String query = "DELETE FROM THEME WHERE nomTheme = '" + nomTheme+"'";
         Statement stmt;
         try {
             stmt = connexion.createStatement();

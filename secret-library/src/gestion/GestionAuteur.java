@@ -61,7 +61,7 @@ public class GestionAuteur {
                     + "idAuteur=?, "
                     + "nomAuteur=?, "
                     + "prenomAuteur=?"
-                    +"WHERE idAuteur="+idAuteur;
+                    +"WHERE idAuteur='"+idAuteur+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, auteur.getIdAuteur());
             stmt.setString(2, auteur.getNomAuteur());

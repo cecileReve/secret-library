@@ -65,7 +65,7 @@ public class GestionEvenement {
                     + "DateDebutEvenement = ?, "
                     + "DateFinEvenement = ?, "
                     + "CommentaireEvenement = ? "
-                    + "WHERE idEvenement = " + idEvenement;
+                    + "WHERE idEvenement = '" + idEvenement+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, e.getNomEvenement());
             stmt.setInt(2, e.getPromotionEvenement());

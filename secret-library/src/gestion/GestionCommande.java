@@ -61,7 +61,7 @@ public class GestionCommande {
     public void sqlUpdate(Commande commande, int idCommande) {
         try {
             String query = "UPDATE COMMANDE SET IDCOMMANDE=?, CODETRANSPORTEUR=?, IDADRESSELIVRAISON=?, IDADRESSEFACTURATION=?, IDCLIENT=?, IDSTATUT=?, DATECOMMANDE=?, IPCOMMANDE=?, NUMEROTRANSACTION=?, COMMENTAIRECOMMANDE=? "
-                    + "WHERE IDCOMMANDE =" + idCommande;
+                    + "WHERE IDCOMMANDE ='" + idCommande+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, commande.getIdCommande());
             stmt.setString(2, commande.getCodeTransporteur());

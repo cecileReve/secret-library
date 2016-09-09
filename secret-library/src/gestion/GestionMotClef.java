@@ -53,7 +53,7 @@ public class GestionMotClef {
     public void sqlUpdate(MotClef motClef, String nomMotClef) {
         try {
             String query = "UPDATE motclef SET nomMotClef=?"
-                    + "WHERE nomMotClef=" + nomMotClef;
+                    + "WHERE nomMotClef='" + nomMotClef+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, motClef.getNomMotClef());
             stmt.executeUpdate();

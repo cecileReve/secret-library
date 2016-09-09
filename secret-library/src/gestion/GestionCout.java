@@ -57,8 +57,8 @@ public class GestionCout {
             String query = "UPDATE COUT SET"
                     + " CODEISBN =? ,"
                     + " IDPRIX=?"
-                    + " WHERE CODEISBN = " + codeISBN
-                    + " AND IDPRIX = " + idPrix;
+                    + " WHERE CODEISBN = '" + codeISBN+"'"
+                    + " AND IDPRIX = '" + idPrix+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cout.getCodeISBN());
             stmt.setInt(2, cout.getIdPrix());

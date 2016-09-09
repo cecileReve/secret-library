@@ -53,8 +53,8 @@ public class GestionEcriture {
     public void sqlUpdate(Ecriture ecriture, int idAuteur, String codeISBN) {
         try {
             String query = "UPDATE ecriture SET idAuteur=?, codeISBN=?"
-                    +"WHERE idAuteur="+idAuteur
-                    +"AND codeISBN="+codeISBN;
+                    +"WHERE idAuteur='"+idAuteur+"'"
+                    +"AND codeISBN='"+codeISBN+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, ecriture.getIdAuteur());
             stmt.setString(2, ecriture.getCodeISBN());

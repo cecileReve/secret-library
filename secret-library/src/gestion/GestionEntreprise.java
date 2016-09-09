@@ -54,7 +54,7 @@ public class GestionEntreprise {
     public void sqlUpdate(Entreprise ent, int idEntreprise) {
         try {
             String query = "UPDATE Entreprise SET nomEntreprise = ?, siretEntreprise = ?, logoEntreprise = ? "
-                    + "WHERE idEntreprise = " + idEntreprise;
+                    + "WHERE idEntreprise = '" + idEntreprise+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, ent.getNomEntreprise());
             stmt.setString(2, ent.getSiretEntreprise());

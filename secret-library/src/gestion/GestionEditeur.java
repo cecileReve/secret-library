@@ -52,7 +52,7 @@ public class GestionEditeur {
     public void sqlUpdate(Editeur ed, String nomEditeur) {
         try {
             String query = "UPDATE Editeur SET nomEditeur = ? "
-                    + "WHERE nomEditeur = " + nomEditeur;
+                    + "WHERE nomEditeur = '" + nomEditeur+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, ed.getNomEditeur());
             stmt.executeUpdate();

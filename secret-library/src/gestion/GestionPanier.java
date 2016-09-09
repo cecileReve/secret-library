@@ -54,7 +54,7 @@ public class GestionPanier {
 
     public void sqlUpdate(Panier p, int idPanier) {
         try {
-            String query = "UPDATE panier SET idClient=?,nomPanier=? WHERE idPanier=" + idPanier;
+            String query = "UPDATE panier SET idClient=?,nomPanier=? WHERE idPanier='" + idPanier+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, p.getIdClient());
             stmt.setString(2, p.getNomPanier());

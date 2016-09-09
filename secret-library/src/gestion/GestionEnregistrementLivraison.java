@@ -56,8 +56,8 @@ public class GestionEnregistrementLivraison {
 
     public void sqlUpdate(EnregistrementLivraison el, int idClient, int idAdresse) {
         try {
-            String query = "UPDATE enregistrementLivraison SET idClient=?, idAdresse=? WHERE idClient=" + idClient
-                    + "AND idAdresse=" + idAdresse;
+            String query = "UPDATE enregistrementLivraison SET idClient=?, idAdresse=? WHERE idClient='" + idClient+"'"
+                    + "AND idAdresse='" + idAdresse+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, el.getIdClient());
             stmt.setInt(2, el.getIdAdresse());

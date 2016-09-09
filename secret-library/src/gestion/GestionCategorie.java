@@ -55,7 +55,7 @@ public class GestionCategorie {
         try {
             String query = "UPDATE CATEGORIE SET "
                     + "NOMCATEGORIE = ? "
-                    + "WHERE NOMCATEGORIE = " + nomCategorie;
+                    + "WHERE NOMCATEGORIE = '" + nomCategorie+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, cat.getNomCategorie());
             stmt.executeUpdate();

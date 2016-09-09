@@ -61,8 +61,8 @@ public class GestionPrecision {
             String query = "UPDATE PRECISION SET "
                     + "nomSousTheme=?, "
                     + "CODEISBN =? "
-                    + "WHERE nomSousTheme = " + nomSousTheme
-                    + " AND codeISBN = " + codeISBN;
+                    + "WHERE nomSousTheme = '" + nomSousTheme+"'"
+                    + " AND codeISBN = '" + codeISBN+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, precision.getNomSousTheme());
             stmt.setString(2, precision.getCodeISBN());
@@ -74,8 +74,8 @@ public class GestionPrecision {
     }
 
     public void sqlDelete(Precision precision, String codeISBN, String nomSousTheme) {
-        String query = "DELETE FROM PRECISION WHERE nomSousTheme = " + nomSousTheme
-                + " AND codeISBN = " + codeISBN;
+        String query = "DELETE FROM PRECISION WHERE nomSousTheme = '" + nomSousTheme+"'"
+                + " AND codeISBN = '" + codeISBN+"'";
         Statement stmt;
         try {
             stmt = connexion.createStatement();

@@ -57,8 +57,8 @@ public class GestionPromotion {
             String query = "UPDATE promotion SET "
                     + "IDEVENEMENT=?, "
                     + "CODEISBN =? "
-                    + "WHERE idEvenement = " + idEvenement
-                    + " AND codeISBN = " + codeISBN;
+                    + "WHERE idEvenement = '" + idEvenement+"'"
+                    + " AND codeISBN = '" + codeISBN+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, idEvenement);
             stmt.setString(2, codeISBN);

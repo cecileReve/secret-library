@@ -53,7 +53,7 @@ public class GestionPrix {
     public void sqlUpdate(Prix pr, int idPrix){
         try {
             String query = "UPDATE Prix SET montantHT = ?, dateMajPrix = ? "
-                    + "WHERE idPrix = " + idPrix;
+                    + "WHERE idPrix =' " + idPrix+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setFloat(1, pr.getMontantHT());
             stmt.setDate(2, pr.getDateMajPrix());

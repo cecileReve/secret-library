@@ -63,7 +63,7 @@ public class GestionDetailCommande {
                     + "QuantiteDetailCommance = ?, "
                     + "PrixHTDetailCommande = ?, "
                     + "TauxTVADetailCommannde = ? "
-                    + "WHERE idDetailCommande = " + idDetailCommande;
+                    + "WHERE idDetailCommande = '" + idDetailCommande+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, dc.getCodeISBN());
             stmt.setInt(2, dc.getIdCommande());

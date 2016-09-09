@@ -60,8 +60,8 @@ private Connection connexion;
             String query = "UPDATE SIEGE SET "
                     + "idEntreprise=?, "
                     + "idAdresse =? "
-                    + "WHERE idEntreprise = " + idEntreprise
-                    + " AND idAdresse = " + idAdresse;
+                    + "WHERE idEntreprise = '" + idEntreprise+"'"
+                    + " AND idAdresse = '" + idAdresse+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setInt(1, siege.getIdEntreprise());
             stmt.setInt(2, siege.getIdAdresse());

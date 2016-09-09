@@ -75,7 +75,7 @@ public class GestionLivre {
             String query = "UPDATE LIVRE SET CODEISBN=?, NOMEDITEUR=?, NOMCATEGORIE=?, IDSTATUT=?,"
                     + "NOMTAXE=?, NOMLIVRE=?, SOUSTITRE=?, COUVLIVRE=?, RESUMELIVRE=?, STOCKLIVRE=?,"
                     + "DATESORTIE=?, POIDSLIVRE=?, COMMENTAIRELIVRE=? "
-                    + "WHERE CODEISBN = " + codeISBN;
+                    + "WHERE CODEISBN = '" + codeISBN+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, livre.getcodeISBN());
             stmt.setString(2, livre.getNomEditeur());

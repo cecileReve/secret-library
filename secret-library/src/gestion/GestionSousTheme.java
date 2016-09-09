@@ -53,7 +53,7 @@ public class GestionSousTheme {
     public void sqlUpdate (SousTheme sst, String nomSousTheme){
         try {
             String query = "UPDATE SousTheme SET nomSousTheme = ? "
-                    + "WHERE nomSousTheme = " + nomSousTheme;
+                    + "WHERE nomSousTheme = '" + nomSousTheme+"'";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, sst.getNomSousTheme());
             stmt.executeUpdate();
