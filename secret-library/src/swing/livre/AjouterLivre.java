@@ -42,6 +42,7 @@ public class AjouterLivre extends javax.swing.JDialog {
         initComponents();
     }
 
+    //sert à virer le modele de netbeans, sinon ça plante
     public DefaultListModel initListeAuteur() {
         DefaultListModel model = new DefaultListModel();
 //        for (Auteur auteur : auteurs) {
@@ -353,18 +354,23 @@ public class AjouterLivre extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //ouvre la fenetre pour ajouter un auteur au livre
+    //recupere l'auteur selectionne quand la fenetre se ferme et l'ajoute au listeauteur model
     private void boutonAjouterAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterAuteurLivreActionPerformed
         // TODO add your handling code here:
         AjouterAuteur ajouter = new AjouterAuteur(null, true);
         ajouter.setVisible(true);
-        System.out.println(auteurs);
         if (ajouter.getAuteur() != null) {
 //            auteurs.add(ajouter.getAuteur());
             ((DefaultListModel)listeAuteur.getModel()).addElement(ajouter.getAuteur());
         }
-        System.out.println(auteurs);
+//        System.out.println(auteurs);
     }//GEN-LAST:event_boutonAjouterAuteurLivreActionPerformed
 
+    //utilisé pour mettre à jour le vecteur dans la v1
+    //maintenant en reconversion si on peut faire sans vecteur
+    //zone d'essai de nouvelles idees
+    //tiens, on peut parcourir un modelList comme un tableau et recup ses objets....
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
 //        listeAuteur.setModel(initListeAuteur());
@@ -374,11 +380,14 @@ public class AjouterLivre extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
+    //ferme la fenetre d'ajout de livre
+    //doit appeler les updates de toutes les tables necessaires (livre - ecriture etc)
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_boutonValiderActionPerformed
 
+    //retire l'auteur selectionne de listeauteur model
     private void boutonSupprimerAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerAuteurLivreActionPerformed
         // TODO add your handling code here:
         if(!listeAuteur.isSelectionEmpty()) {
