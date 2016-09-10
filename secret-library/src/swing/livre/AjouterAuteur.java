@@ -7,11 +7,9 @@ package swing.livre;
 
 import classe.Auteur;
 import gestion.GestionAuteur;
-import gestion.GestionEmploye;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -26,7 +24,8 @@ public class AjouterAuteur extends javax.swing.JDialog {
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
     private GestionAuteur gestion;
-    
+    private Auteur auteur;
+
     /**
      * Creates new form AjouterAuteur
      */
@@ -36,26 +35,30 @@ public class AjouterAuteur extends javax.swing.JDialog {
         gestion = new GestionAuteur(connexion);
         initComponents();
         listeAuteur.setModel(initListeAuteur());
-        listeAuteur.setSelectedIndex(0);
+//        listeAuteur.setSelectedIndex(0);
     }
-    
+
     public DefaultListModel initListeAuteur() {
         DefaultListModel model = new DefaultListModel();
         try {
             ResultSet rs = gestion.sqlRead();
-            while(rs.next()) {
+            while (rs.next()) {
                 model.addElement(new Auteur(rs.getInt("idAuteur"), rs.getString("nomAuteur"), rs.getString("prenomAuteur")));
-                System.out.println(model);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AjouterAuteur.class.getName()).log(Level.SEVERE, null, ex);
         }
         return model;
     }
-    
+
     public Auteur getAuteur() {
-        return (Auteur)listeAuteur.getSelectedValue();
+        return auteur;
     }
+
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,13 +147,12 @@ public class AjouterAuteur extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
-        System.out.println(((Auteur)listeAuteur.getSelectedValue()).getIdAuteur());
-        System.out.println(this.getParent());
+        auteur = (Auteur) listeAuteur.getSelectedValue();
         dispose();
     }//GEN-LAST:event_boutonValiderActionPerformed
 

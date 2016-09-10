@@ -10,6 +10,7 @@ import gestion.GestionLivre;
 import java.sql.Connection;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import util.BdDConnexion;
 
 /**
@@ -43,9 +44,9 @@ public class AjouterLivre extends javax.swing.JDialog {
 
     public DefaultListModel initListeAuteur() {
         DefaultListModel model = new DefaultListModel();
-        for (Auteur auteur : auteurs) {
-            model.addElement(auteur);
-        }
+//        for (Auteur auteur : auteurs) {
+//            model.addElement(auteur);
+//        }
         return model;
     }
 
@@ -99,12 +100,12 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane15 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
         boutonValider = new javax.swing.JButton();
-        AjouterAuteurLivre = new javax.swing.JButton();
+        boutonAjouterAuteurLivre = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        boutonSupprimerAuteurLivre = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -272,14 +273,14 @@ public class AjouterLivre extends javax.swing.JDialog {
         getContentPane().add(boutonValider);
         boutonValider.setBounds(460, 730, 130, 60);
 
-        AjouterAuteurLivre.setText("Ajouter");
-        AjouterAuteurLivre.addActionListener(new java.awt.event.ActionListener() {
+        boutonAjouterAuteurLivre.setText("Ajouter");
+        boutonAjouterAuteurLivre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjouterAuteurLivreActionPerformed(evt);
+                boutonAjouterAuteurLivreActionPerformed(evt);
             }
         });
-        getContentPane().add(AjouterAuteurLivre);
-        AjouterAuteurLivre.setBounds(120, 680, 71, 32);
+        getContentPane().add(boutonAjouterAuteurLivre);
+        boutonAjouterAuteurLivre.setBounds(120, 680, 71, 32);
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
@@ -297,9 +298,14 @@ public class AjouterLivre extends javax.swing.JDialog {
         getContentPane().add(jButton6);
         jButton6.setBounds(890, 500, 77, 32);
 
-        jButton7.setText("jButton7");
-        getContentPane().add(jButton7);
-        jButton7.setBounds(360, 680, 77, 32);
+        boutonSupprimerAuteurLivre.setText("Supprimer");
+        boutonSupprimerAuteurLivre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonSupprimerAuteurLivreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boutonSupprimerAuteurLivre);
+        boutonSupprimerAuteurLivre.setBounds(337, 680, 100, 32);
 
         jButton8.setText("jButton8");
         getContentPane().add(jButton8);
@@ -347,23 +353,40 @@ public class AjouterLivre extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AjouterAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterAuteurLivreActionPerformed
+    private void boutonAjouterAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterAuteurLivreActionPerformed
         // TODO add your handling code here:
         AjouterAuteur ajouter = new AjouterAuteur(null, true);
         ajouter.setVisible(true);
-        auteurs.add(ajouter.getAuteur());
         System.out.println(auteurs);
-    }//GEN-LAST:event_AjouterAuteurLivreActionPerformed
+        if (ajouter.getAuteur() != null) {
+//            auteurs.add(ajouter.getAuteur());
+            ((DefaultListModel)listeAuteur.getModel()).addElement(ajouter.getAuteur());
+        }
+        System.out.println(auteurs);
+    }//GEN-LAST:event_boutonAjouterAuteurLivreActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        listeAuteur.setModel(initListeAuteur());
+//        listeAuteur.setModel(initListeAuteur());
+        for(int i =0; i < listeAuteur.getModel().getSize(); i++) {
+            System.out.println(listeAuteur.getModel().getElementAt(i));
+            System.out.println(listeAuteur.getModel().getElementAt(i).getClass());
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_boutonValiderActionPerformed
+
+    private void boutonSupprimerAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerAuteurLivreActionPerformed
+        // TODO add your handling code here:
+        if(!listeAuteur.isSelectionEmpty()) {
+//            auteurs.remove(listeAuteur.getSelectedValue());
+//            listeAuteur.setModel(initListeAuteur());
+            ((DefaultListModel)listeAuteur.getModel()).removeElement(listeAuteur.getSelectedValue());
+        }
+    }//GEN-LAST:event_boutonSupprimerAuteurLivreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,7 +431,8 @@ public class AjouterLivre extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AjouterAuteurLivre;
+    private javax.swing.JButton boutonAjouterAuteurLivre;
+    private javax.swing.JButton boutonSupprimerAuteurLivre;
     private javax.swing.JButton boutonValider;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -416,7 +440,6 @@ public class AjouterLivre extends javax.swing.JDialog {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox3;
