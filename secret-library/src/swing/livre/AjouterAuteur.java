@@ -71,7 +71,7 @@ public class AjouterAuteur extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boutonValider = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         textNomAuteur = new javax.swing.JTextField();
         textePrenomAuteur = new javax.swing.JTextField();
@@ -109,14 +109,14 @@ public class AjouterAuteur extends javax.swing.JDialog {
         getContentPane().add(jButton1);
         jButton1.setBounds(180, 300, 77, 32);
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        boutonValider.setText("Valider");
+        boutonValider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                boutonValiderActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(250, 390, 120, 60);
+        getContentPane().add(boutonValider);
+        boutonValider.setBounds(250, 390, 120, 60);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
@@ -147,12 +147,12 @@ public class AjouterAuteur extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
         System.out.println(((Auteur)listeAuteur.getSelectedValue()).getIdAuteur());
         System.out.println(this.getParent());
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_boutonValiderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +197,8 @@ public class AjouterAuteur extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boutonValider;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

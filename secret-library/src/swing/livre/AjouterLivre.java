@@ -98,8 +98,8 @@ public class AjouterLivre extends javax.swing.JDialog {
         labelSousTheme = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boutonValider = new javax.swing.JButton();
+        AjouterAuteurLivre = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -118,6 +118,13 @@ public class AjouterLivre extends javax.swing.JDialog {
         jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         getContentPane().setLayout(null);
 
         labelAjouterLivre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -256,18 +263,23 @@ public class AjouterLivre extends javax.swing.JDialog {
         getContentPane().add(jScrollPane15);
         jScrollPane15.setBounds(660, 580, 305, 102);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(460, 730, 130, 60);
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        boutonValider.setText("Valider");
+        boutonValider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                boutonValiderActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(120, 680, 77, 32);
+        getContentPane().add(boutonValider);
+        boutonValider.setBounds(460, 730, 130, 60);
+
+        AjouterAuteurLivre.setText("Ajouter");
+        AjouterAuteurLivre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AjouterAuteurLivreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AjouterAuteurLivre);
+        AjouterAuteurLivre.setBounds(120, 680, 71, 32);
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
@@ -335,13 +347,23 @@ public class AjouterLivre extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AjouterAuteurLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterAuteurLivreActionPerformed
         // TODO add your handling code here:
         AjouterAuteur ajouter = new AjouterAuteur(null, true);
         ajouter.setVisible(true);
         auteurs.add(ajouter.getAuteur());
         System.out.println(auteurs);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AjouterAuteurLivreActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        listeAuteur.setModel(initListeAuteur());
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_boutonValiderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -386,10 +408,10 @@ public class AjouterLivre extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton AjouterAuteurLivre;
+    private javax.swing.JButton boutonValider;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
