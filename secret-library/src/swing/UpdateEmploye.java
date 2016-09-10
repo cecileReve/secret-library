@@ -174,7 +174,7 @@ public class UpdateEmploye extends javax.swing.JDialog {
                 jTextArea1.getText());
         System.out.println("ancien num secu = " + employe.getNumSecuEmploye());
         gestEmp.sqlUpdate(emp, employe.getNumSecuEmploye());
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

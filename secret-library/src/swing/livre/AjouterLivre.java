@@ -5,16 +5,11 @@
  */
 package swing.livre;
 
-import gestion.GestionEmploye;
+import classe.Auteur;
 import gestion.GestionLivre;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.table.DefaultTableModel;
 import util.BdDConnexion;
 
 /**
@@ -25,7 +20,16 @@ public class AjouterLivre extends javax.swing.JDialog {
 
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
-    GestionLivre gestion;
+    private GestionLivre gestion;
+    private Vector<Auteur> auteurs = new Vector();
+
+    public Vector<Auteur> getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(Vector<Auteur> auteurs) {
+        this.auteurs = auteurs;
+    }
 
     /**
      * Creates new form AjouterLivre
@@ -37,6 +41,13 @@ public class AjouterLivre extends javax.swing.JDialog {
         initComponents();
     }
 
+    public DefaultListModel initListeAuteur() {
+        DefaultListModel model = new DefaultListModel();
+        for (Auteur auteur : auteurs) {
+            model.addElement(auteur);
+        }
+        return model;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,19 +58,19 @@ public class AjouterLivre extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        labelAjouterLivre = new javax.swing.JLabel();
+        labelCodeISBN = new javax.swing.JLabel();
+        labelNomLivre = new javax.swing.JLabel();
+        labelSousTitre = new javax.swing.JLabel();
+        labeldateSortie = new javax.swing.JLabel();
+        labelPoids = new javax.swing.JLabel();
+        labelStatut = new javax.swing.JLabel();
+        labelStock = new javax.swing.JLabel();
+        labelCouvLivre = new javax.swing.JLabel();
+        labelResumeLivre = new javax.swing.JLabel();
+        labelCommentaireLivre = new javax.swing.JLabel();
+        labelNomTaxe = new javax.swing.JLabel();
+        labelEditeur = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -76,22 +87,18 @@ public class AjouterLivre extends javax.swing.JDialog {
         jTextPane7 = new javax.swing.JTextPane();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextPane8 = new javax.swing.JTextPane();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTextPane9 = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextPane10 = new javax.swing.JTextPane();
-        jLabel14 = new javax.swing.JLabel();
+        labelAuteur = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jLabel15 = new javax.swing.JLabel();
+        listeAuteur = new javax.swing.JList();
+        labelTheme = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
-        jLabel16 = new javax.swing.JLabel();
+        labelSousTheme = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -102,129 +109,128 @@ public class AjouterLivre extends javax.swing.JDialog {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        labelCategorie = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jComboBox3 = new javax.swing.JComboBox();
+        jComboBox4 = new javax.swing.JComboBox();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(486, 27, 41, 16);
+        labelAjouterLivre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelAjouterLivre.setText("Ajouter un livre");
+        getContentPane().add(labelAjouterLivre);
+        labelAjouterLivre.setBounds(460, 20, 150, 40);
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(6, 78, 127, 16);
+        labelCodeISBN.setText("ISBN");
+        getContentPane().add(labelCodeISBN);
+        labelCodeISBN.setBounds(80, 90, 30, 16);
 
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(6, 121, 127, 16);
+        labelNomLivre.setText("Titre");
+        getContentPane().add(labelNomLivre);
+        labelNomLivre.setBounds(80, 130, 30, 16);
 
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(6, 164, 127, 16);
+        labelSousTitre.setText("Sous-titre");
+        getContentPane().add(labelSousTitre);
+        labelSousTitre.setBounds(50, 170, 60, 16);
 
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(6, 207, 127, 16);
+        labeldateSortie.setText("Date de sortie");
+        getContentPane().add(labeldateSortie);
+        labeldateSortie.setBounds(30, 210, 80, 16);
 
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(6, 253, 127, 16);
+        labelPoids.setText("Poids");
+        getContentPane().add(labelPoids);
+        labelPoids.setBounds(610, 80, 40, 16);
 
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(6, 296, 127, 16);
+        labelStatut.setText("Statut");
+        getContentPane().add(labelStatut);
+        labelStatut.setBounds(610, 120, 50, 16);
 
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(6, 339, 127, 16);
+        labelStock.setText("Stock");
+        getContentPane().add(labelStock);
+        labelStock.setBounds(610, 170, 40, 16);
 
-        jLabel9.setText("jLabel9");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(6, 382, 127, 16);
+        labelCouvLivre.setText("Image de couverture");
+        getContentPane().add(labelCouvLivre);
+        labelCouvLivre.setBounds(530, 250, 120, 16);
 
-        jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(6, 425, 134, 16);
+        labelResumeLivre.setText("Resume");
+        getContentPane().add(labelResumeLivre);
+        labelResumeLivre.setBounds(60, 250, 60, 16);
 
-        jLabel11.setText("jLabel11");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(6, 468, 134, 16);
+        labelCommentaireLivre.setText("Commentaire");
+        getContentPane().add(labelCommentaireLivre);
+        labelCommentaireLivre.setBounds(570, 300, 80, 16);
 
-        jLabel12.setText("jLabel12");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(6, 511, 134, 16);
+        labelNomTaxe.setText("Taxe applicable");
+        getContentPane().add(labelNomTaxe);
+        labelNomTaxe.setBounds(560, 210, 100, 16);
 
-        jLabel13.setText("jLabel13");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(0, 620, 134, 16);
+        labelEditeur.setText("Editeur");
+        getContentPane().add(labelEditeur);
+        labelEditeur.setBounds(70, 410, 50, 16);
 
         jScrollPane1.setViewportView(jTextPane1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(151, 78, 307, 30);
+        jScrollPane1.setBounds(120, 80, 310, 30);
 
         jScrollPane2.setViewportView(jTextPane2);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(151, 121, 307, 30);
+        jScrollPane2.setBounds(120, 120, 310, 30);
 
         jScrollPane3.setViewportView(jTextPane3);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(151, 164, 307, 30);
+        jScrollPane3.setBounds(120, 160, 307, 30);
 
         jScrollPane4.setViewportView(jTextPane4);
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(151, 207, 307, 30);
+        jScrollPane4.setBounds(120, 210, 307, 30);
 
         jScrollPane5.setViewportView(jTextPane5);
 
         getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(151, 253, 307, 30);
+        jScrollPane5.setBounds(660, 80, 307, 30);
 
         jScrollPane6.setViewportView(jTextPane6);
 
         getContentPane().add(jScrollPane6);
-        jScrollPane6.setBounds(151, 296, 307, 30);
+        jScrollPane6.setBounds(660, 120, 307, 30);
 
         jScrollPane7.setViewportView(jTextPane7);
 
         getContentPane().add(jScrollPane7);
-        jScrollPane7.setBounds(151, 339, 307, 30);
+        jScrollPane7.setBounds(660, 160, 307, 30);
 
         jScrollPane8.setViewportView(jTextPane8);
 
         getContentPane().add(jScrollPane8);
-        jScrollPane8.setBounds(151, 382, 307, 30);
-
-        jScrollPane9.setViewportView(jTextPane9);
-
-        getContentPane().add(jScrollPane9);
-        jScrollPane9.setBounds(151, 425, 307, 30);
+        jScrollPane8.setBounds(660, 250, 307, 30);
 
         jScrollPane10.setViewportView(jTextPane10);
 
         getContentPane().add(jScrollPane10);
-        jScrollPane10.setBounds(152, 468, 306, 30);
+        jScrollPane10.setBounds(660, 200, 306, 30);
 
-        jLabel14.setText("jLabel14");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(611, 78, 48, 16);
+        labelAuteur.setText("Auteur(s)");
+        getContentPane().add(labelAuteur);
+        labelAuteur.setBounds(60, 590, 60, 16);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane13.setViewportView(jList1);
+        listeAuteur.setModel(initListeAuteur());
+        jScrollPane13.setViewportView(listeAuteur);
 
         getContentPane().add(jScrollPane13);
-        jScrollPane13.setBounds(677, 78, 314, 102);
+        jScrollPane13.setBounds(120, 580, 314, 102);
 
-        jLabel15.setText("jLabel15");
-        getContentPane().add(jLabel15);
-        jLabel15.setBounds(611, 253, 48, 16);
+        labelTheme.setText("Theme");
+        getContentPane().add(labelTheme);
+        labelTheme.setBounds(610, 400, 39, 16);
 
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -234,11 +240,11 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane14.setViewportView(jList2);
 
         getContentPane().add(jScrollPane14);
-        jScrollPane14.setBounds(677, 253, 305, 102);
+        jScrollPane14.setBounds(660, 400, 305, 102);
 
-        jLabel16.setText("jLabel16");
-        getContentPane().add(jLabel16);
-        jLabel16.setBounds(611, 425, 48, 16);
+        labelSousTheme.setText("Sous-Theme");
+        getContentPane().add(labelSousTheme);
+        labelSousTheme.setBounds(580, 570, 80, 16);
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -248,63 +254,94 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane15.setViewportView(jList3);
 
         getContentPane().add(jScrollPane15);
-        jScrollPane15.setBounds(677, 425, 305, 102);
+        jScrollPane15.setBounds(660, 580, 305, 102);
 
         jButton1.setText("jButton1");
         getContentPane().add(jButton1);
-        jButton1.setBounds(470, 710, 77, 32);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(148, 511, 310, 30);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(150, 610, 312, 30);
+        jButton1.setBounds(460, 730, 130, 60);
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(680, 190, 77, 32);
+        jButton2.setBounds(120, 680, 77, 32);
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
-        jButton3.setBounds(680, 370, 77, 32);
+        jButton3.setBounds(660, 500, 77, 32);
 
         jButton4.setText("jButton4");
         getContentPane().add(jButton4);
-        jButton4.setBounds(680, 540, 77, 32);
+        jButton4.setBounds(660, 680, 77, 32);
 
         jButton5.setText("jButton5");
         getContentPane().add(jButton5);
-        jButton5.setBounds(770, 540, 77, 32);
+        jButton5.setBounds(890, 680, 77, 32);
 
         jButton6.setText("jButton6");
         getContentPane().add(jButton6);
-        jButton6.setBounds(760, 370, 77, 32);
+        jButton6.setBounds(890, 500, 77, 32);
 
         jButton7.setText("jButton7");
         getContentPane().add(jButton7);
-        jButton7.setBounds(760, 190, 77, 32);
+        jButton7.setBounds(360, 680, 77, 32);
 
         jButton8.setText("jButton8");
         getContentPane().add(jButton8);
-        jButton8.setBounds(150, 550, 77, 32);
+        jButton8.setBounds(120, 430, 77, 32);
 
         jButton9.setText("jButton9");
         getContentPane().add(jButton9);
-        jButton9.setBounds(240, 550, 77, 32);
+        jButton9.setBounds(360, 430, 77, 32);
 
         jButton10.setText("jButton10");
         getContentPane().add(jButton10);
-        jButton10.setBounds(150, 650, 84, 32);
+        jButton10.setBounds(120, 520, 84, 32);
 
         jButton11.setText("jButton11");
         getContentPane().add(jButton11);
-        jButton11.setBounds(240, 650, 84, 32);
+        jButton11.setBounds(350, 520, 84, 32);
 
-        setSize(new java.awt.Dimension(1127, 842));
+        labelCategorie.setText("Categorie");
+        getContentPane().add(labelCategorie);
+        labelCategorie.setBounds(60, 500, 60, 20);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane11.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane11);
+        jScrollPane11.setBounds(120, 250, 310, 120);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox3);
+        jComboBox3.setBounds(120, 400, 310, 30);
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox4);
+        jComboBox4.setBounds(120, 490, 310, 30);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane9.setViewportView(jTextArea2);
+
+        getContentPane().add(jScrollPane9);
+        jScrollPane9.setBounds(660, 300, 310, 70);
+
+        setSize(new java.awt.Dimension(1077, 858));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        AjouterAuteur ajouter = new AjouterAuteur(null, true);
+        ajouter.setVisible(true);
+        auteurs.add(ajouter.getAuteur());
+        System.out.println(auteurs);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,29 +397,13 @@ public class AjouterLivre extends javax.swing.JDialog {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -394,6 +415,8 @@ public class AjouterLivre extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane10;
     private javax.swing.JTextPane jTextPane2;
@@ -403,6 +426,23 @@ public class AjouterLivre extends javax.swing.JDialog {
     private javax.swing.JTextPane jTextPane6;
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
-    private javax.swing.JTextPane jTextPane9;
+    private javax.swing.JLabel labelAjouterLivre;
+    private javax.swing.JLabel labelAuteur;
+    private javax.swing.JLabel labelCategorie;
+    private javax.swing.JLabel labelCodeISBN;
+    private javax.swing.JLabel labelCommentaireLivre;
+    private javax.swing.JLabel labelCouvLivre;
+    private javax.swing.JLabel labelEditeur;
+    private javax.swing.JLabel labelNomLivre;
+    private javax.swing.JLabel labelNomTaxe;
+    private javax.swing.JLabel labelPoids;
+    private javax.swing.JLabel labelResumeLivre;
+    private javax.swing.JLabel labelSousTheme;
+    private javax.swing.JLabel labelSousTitre;
+    private javax.swing.JLabel labelStatut;
+    private javax.swing.JLabel labelStock;
+    private javax.swing.JLabel labelTheme;
+    private javax.swing.JLabel labeldateSortie;
+    private javax.swing.JList listeAuteur;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,7 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private Connection connexion = null;
     private BdDConnexion bdDConnexion = new BdDConnexion();
-    GestionEmploye gestion;
+    private GestionEmploye gestion;
 
     public AffichageEmploye() {
         connexion = bdDConnexion.connectDataBase();
@@ -58,7 +58,7 @@ public class AffichageEmploye extends javax.swing.JFrame {
 
     private Vector initVectorEmploye() {
         ResultSet rs;
-        GestionEmploye gestion = new GestionEmploye(connexion);
+//        GestionEmploye gestion = new GestionEmploye(connexion);
         rs = gestion.sqlRead();
         Vector vv = new Vector();
         try {
