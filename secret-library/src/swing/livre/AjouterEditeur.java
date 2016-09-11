@@ -14,7 +14,9 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import util.BdDConnexion;
 
 /**
@@ -27,6 +29,7 @@ public class AjouterEditeur extends javax.swing.JDialog {
     private Connection connexion;
     private BdDConnexion BDDcon = new BdDConnexion();
     private Editeur editeur;
+    private TableRowSorter sorter;
 
     public Editeur getEditeur() {
         return editeur;
@@ -44,6 +47,8 @@ public class AjouterEditeur extends javax.swing.JDialog {
         connexion = BDDcon.connectDataBase();
         gestion = new GestionEditeur(connexion);
         initComponents();
+        sorter = new TableRowSorter(tableEditeur.getModel());
+        tableEditeur.setRowSorter(sorter);
     }
 
     public DefaultTableModel initTableEditeur() {
@@ -83,6 +88,7 @@ public class AjouterEditeur extends javax.swing.JDialog {
         boutonAjouterEditeur = new javax.swing.JButton();
         boutonValider = new javax.swing.JButton();
         labelRechercher = new javax.swing.JLabel();
+        boutouRechercher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -91,7 +97,7 @@ public class AjouterEditeur extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tableEditeur);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 130, 160, 270);
+        jScrollPane1.setBounds(30, 130, 210, 270);
         getContentPane().add(champAjouterEditeur);
         champAjouterEditeur.setBounds(300, 90, 160, 30);
         getContentPane().add(champRecherche);
@@ -123,6 +129,15 @@ public class AjouterEditeur extends javax.swing.JDialog {
         getContentPane().add(labelRechercher);
         labelRechercher.setBounds(30, 60, 70, 16);
 
+        boutouRechercher.setText("Ok");
+        boutouRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutouRechercherActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boutouRechercher);
+        boutouRechercher.setBounds(200, 90, 50, 32);
+
         setSize(new java.awt.Dimension(540, 548));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +165,19 @@ public class AjouterEditeur extends javax.swing.JDialog {
             dispose();
         }
     }//GEN-LAST:event_boutonValiderActionPerformed
+
+    private void boutouRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutouRechercherActionPerformed
+        // Row filter qui filtre le table model selon une regex
+        // regex : (?iu) permet d'ignorer la case et les accents
+        RowFilter<DefaultTableModel, Editeur> rf = null;
+        try {
+            rf = RowFilter.regexFilter("(?iu)" + champRecherche.getText());
+        } catch (java.util.regex.PatternSyntaxException e) {
+            System.out.println("erreur saisie");
+            return;
+        }
+        sorter.setRowFilter(rf);
+    }//GEN-LAST:event_boutouRechercherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +224,7 @@ public class AjouterEditeur extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutonAjouterEditeur;
     private javax.swing.JButton boutonValider;
+    private javax.swing.JButton boutouRechercher;
     private javax.swing.JTextField champAjouterEditeur;
     private javax.swing.JTextField champRecherche;
     private javax.swing.JScrollPane jScrollPane1;
