@@ -22,7 +22,7 @@ public class Editeur {
 
     @Override
     public String toString() {
-        return "Editeur{" + "nomEditeur=" + nomEditeur + '}';
+        return nomEditeur;
     }
     public void modifierEditeur(String nomEditeur){
         setNomEditeur(nomEditeur);

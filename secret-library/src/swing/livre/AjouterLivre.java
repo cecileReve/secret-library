@@ -6,6 +6,7 @@
 package swing.livre;
 
 import classe.Auteur;
+import classe.Editeur;
 import gestion.GestionLivre;
 import java.sql.Connection;
 import java.util.Vector;
@@ -23,6 +24,7 @@ public class AjouterLivre extends javax.swing.JDialog {
     private BdDConnexion bdDConnexion = new BdDConnexion();
     private GestionLivre gestion;
     private Vector<Auteur> auteurs = new Vector();
+    private Editeur editeur;
 
     public Vector<Auteur> getAuteurs() {
         return auteurs;
@@ -31,6 +33,11 @@ public class AjouterLivre extends javax.swing.JDialog {
     public void setAuteurs(Vector<Auteur> auteurs) {
         this.auteurs = auteurs;
     }
+
+      //remplacé par du code qui fait la meme chose dans le constructeur de la jlist
+//    public DefaultListModel initListeAuteur() {
+//        return new DefaultListModel();
+//    }
 
     /**
      * Creates new form AjouterLivre
@@ -41,16 +48,7 @@ public class AjouterLivre extends javax.swing.JDialog {
         gestion = new GestionLivre(connexion);
         initComponents();
     }
-
-    //sert à virer le modele de netbeans, sinon ça plante
-    public DefaultListModel initListeAuteur() {
-        DefaultListModel model = new DefaultListModel();
-//        for (Auteur auteur : auteurs) {
-//            model.addElement(auteur);
-//        }
-        return model;
-    }
-
+//
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +91,7 @@ public class AjouterLivre extends javax.swing.JDialog {
         jTextPane10 = new javax.swing.JTextPane();
         labelAuteur = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        listeAuteur = new javax.swing.JList();
+        listeAuteur = new javax.swing.JList(new DefaultListModel());
         labelTheme = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -107,17 +105,20 @@ public class AjouterLivre extends javax.swing.JDialog {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         boutonSupprimerAuteurLivre = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        boutonChoisirEditeur = new javax.swing.JButton();
+        boutonChoisirCategorie = new javax.swing.JButton();
         labelCategorie = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        labelNomEditeur = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        labelMotClef = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -152,35 +153,35 @@ public class AjouterLivre extends javax.swing.JDialog {
 
         labelPoids.setText("Poids");
         getContentPane().add(labelPoids);
-        labelPoids.setBounds(610, 80, 40, 16);
+        labelPoids.setBounds(610, 130, 40, 16);
 
         labelStatut.setText("Statut");
         getContentPane().add(labelStatut);
-        labelStatut.setBounds(610, 120, 50, 16);
+        labelStatut.setBounds(610, 90, 50, 16);
 
         labelStock.setText("Stock");
         getContentPane().add(labelStock);
-        labelStock.setBounds(610, 170, 40, 16);
+        labelStock.setBounds(70, 370, 40, 16);
 
-        labelCouvLivre.setText("Image de couverture");
+        labelCouvLivre.setText("Couverture");
         getContentPane().add(labelCouvLivre);
-        labelCouvLivre.setBounds(530, 250, 120, 16);
+        labelCouvLivre.setBounds(40, 330, 70, 16);
 
         labelResumeLivre.setText("Resume");
         getContentPane().add(labelResumeLivre);
-        labelResumeLivre.setBounds(60, 250, 60, 16);
+        labelResumeLivre.setBounds(50, 450, 60, 16);
 
         labelCommentaireLivre.setText("Commentaire");
         getContentPane().add(labelCommentaireLivre);
-        labelCommentaireLivre.setBounds(570, 300, 80, 16);
+        labelCommentaireLivre.setBounds(570, 200, 80, 16);
 
         labelNomTaxe.setText("Taxe applicable");
         getContentPane().add(labelNomTaxe);
-        labelNomTaxe.setBounds(560, 210, 100, 16);
+        labelNomTaxe.setBounds(560, 170, 100, 16);
 
         labelEditeur.setText("Editeur");
         getContentPane().add(labelEditeur);
-        labelEditeur.setBounds(70, 410, 50, 16);
+        labelEditeur.setBounds(60, 250, 50, 16);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -200,38 +201,37 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane4.setViewportView(jTextPane4);
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(120, 210, 307, 30);
+        jScrollPane4.setBounds(120, 200, 307, 30);
 
         jScrollPane5.setViewportView(jTextPane5);
 
         getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(660, 80, 307, 30);
+        jScrollPane5.setBounds(660, 120, 307, 30);
 
         jScrollPane6.setViewportView(jTextPane6);
 
         getContentPane().add(jScrollPane6);
-        jScrollPane6.setBounds(660, 120, 307, 30);
+        jScrollPane6.setBounds(660, 80, 307, 30);
 
         jScrollPane7.setViewportView(jTextPane7);
 
         getContentPane().add(jScrollPane7);
-        jScrollPane7.setBounds(660, 160, 307, 30);
+        jScrollPane7.setBounds(120, 360, 307, 30);
 
         jScrollPane8.setViewportView(jTextPane8);
 
         getContentPane().add(jScrollPane8);
-        jScrollPane8.setBounds(660, 250, 307, 30);
+        jScrollPane8.setBounds(120, 320, 307, 30);
 
         jScrollPane10.setViewportView(jTextPane10);
 
         getContentPane().add(jScrollPane10);
-        jScrollPane10.setBounds(660, 200, 306, 30);
+        jScrollPane10.setBounds(660, 160, 306, 30);
 
         labelAuteur.setText("Auteur(s)");
         getContentPane().add(labelAuteur);
         labelAuteur.setBounds(60, 590, 60, 16);
 
-        listeAuteur.setModel(initListeAuteur());
         jScrollPane13.setViewportView(listeAuteur);
 
         getContentPane().add(jScrollPane13);
@@ -239,7 +239,7 @@ public class AjouterLivre extends javax.swing.JDialog {
 
         labelTheme.setText("Theme");
         getContentPane().add(labelTheme);
-        labelTheme.setBounds(610, 400, 39, 16);
+        labelTheme.setBounds(610, 290, 39, 16);
 
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -249,11 +249,11 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane14.setViewportView(jList2);
 
         getContentPane().add(jScrollPane14);
-        jScrollPane14.setBounds(660, 400, 305, 102);
+        jScrollPane14.setBounds(660, 280, 305, 102);
 
         labelSousTheme.setText("Sous-Theme");
         getContentPane().add(labelSousTheme);
-        labelSousTheme.setBounds(580, 570, 80, 16);
+        labelSousTheme.setBounds(580, 430, 80, 16);
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -263,7 +263,7 @@ public class AjouterLivre extends javax.swing.JDialog {
         jScrollPane15.setViewportView(jList3);
 
         getContentPane().add(jScrollPane15);
-        jScrollPane15.setBounds(660, 580, 305, 102);
+        jScrollPane15.setBounds(660, 430, 305, 102);
 
         boutonValider.setText("Valider");
         boutonValider.addActionListener(new java.awt.event.ActionListener() {
@@ -285,19 +285,19 @@ public class AjouterLivre extends javax.swing.JDialog {
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
-        jButton3.setBounds(660, 500, 77, 32);
+        jButton3.setBounds(660, 380, 77, 32);
 
         jButton4.setText("jButton4");
         getContentPane().add(jButton4);
-        jButton4.setBounds(660, 680, 77, 32);
+        jButton4.setBounds(660, 530, 77, 32);
 
         jButton5.setText("jButton5");
         getContentPane().add(jButton5);
-        jButton5.setBounds(890, 680, 77, 32);
+        jButton5.setBounds(890, 530, 77, 32);
 
         jButton6.setText("jButton6");
         getContentPane().add(jButton6);
-        jButton6.setBounds(890, 500, 77, 32);
+        jButton6.setBounds(890, 380, 77, 32);
 
         boutonSupprimerAuteurLivre.setText("Supprimer");
         boutonSupprimerAuteurLivre.addActionListener(new java.awt.event.ActionListener() {
@@ -308,47 +308,70 @@ public class AjouterLivre extends javax.swing.JDialog {
         getContentPane().add(boutonSupprimerAuteurLivre);
         boutonSupprimerAuteurLivre.setBounds(337, 680, 100, 32);
 
-        jButton8.setText("jButton8");
-        getContentPane().add(jButton8);
-        jButton8.setBounds(120, 430, 77, 32);
+        boutonChoisirEditeur.setText("Choisir");
+        boutonChoisirEditeur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonChoisirEditeurActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boutonChoisirEditeur);
+        boutonChoisirEditeur.setBounds(350, 240, 80, 32);
 
-        jButton9.setText("jButton9");
-        getContentPane().add(jButton9);
-        jButton9.setBounds(360, 430, 77, 32);
-
-        jButton10.setText("jButton10");
-        getContentPane().add(jButton10);
-        jButton10.setBounds(120, 520, 84, 32);
-
-        jButton11.setText("jButton11");
-        getContentPane().add(jButton11);
-        jButton11.setBounds(350, 520, 84, 32);
+        boutonChoisirCategorie.setText("Choisir");
+        getContentPane().add(boutonChoisirCategorie);
+        boutonChoisirCategorie.setBounds(350, 280, 84, 32);
 
         labelCategorie.setText("Categorie");
         getContentPane().add(labelCategorie);
-        labelCategorie.setBounds(60, 500, 60, 20);
+        labelCategorie.setBounds(50, 290, 60, 20);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane11.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane11);
-        jScrollPane11.setBounds(120, 250, 310, 120);
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox3);
-        jComboBox3.setBounds(120, 400, 310, 30);
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox4);
-        jComboBox4.setBounds(120, 490, 310, 30);
+        jScrollPane11.setBounds(120, 440, 310, 120);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane9.setViewportView(jTextArea2);
 
         getContentPane().add(jScrollPane9);
-        jScrollPane9.setBounds(660, 300, 310, 70);
+        jScrollPane9.setBounds(660, 200, 310, 60);
+
+        labelNomEditeur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNomEditeur.setText("Choisir un editeur");
+        labelNomEditeur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(labelNomEditeur);
+        labelNomEditeur.setBounds(120, 240, 220, 30);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Choisir une catégorie");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(120, 280, 220, 30);
+
+        labelMotClef.setText("Mot-Clef");
+        getContentPane().add(labelMotClef);
+        labelMotClef.setBounds(600, 580, 50, 16);
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane12.setViewportView(jList1);
+
+        getContentPane().add(jScrollPane12);
+        jScrollPane12.setBounds(660, 580, 310, 90);
+
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(660, 670, 77, 32);
+
+        jButton2.setText("jButton2");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(890, 670, 77, 32);
 
         setSize(new java.awt.Dimension(1077, 858));
         setLocationRelativeTo(null);
@@ -397,6 +420,16 @@ public class AjouterLivre extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_boutonSupprimerAuteurLivreActionPerformed
 
+    private void boutonChoisirEditeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonChoisirEditeurActionPerformed
+        // TODO add your handling code here:
+        AjouterEditeur ajouter = new AjouterEditeur(null, true);
+        ajouter.setVisible(true);
+        if (ajouter.getEditeur() != null) {
+            editeur = ajouter.getEditeur();
+            labelNomEditeur.setText(editeur.toString());
+        }
+    }//GEN-LAST:event_boutonChoisirEditeurActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,23 +474,24 @@ public class AjouterLivre extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutonAjouterAuteurLivre;
+    private javax.swing.JButton boutonChoisirCategorie;
+    private javax.swing.JButton boutonChoisirEditeur;
     private javax.swing.JButton boutonSupprimerAuteurLivre;
     private javax.swing.JButton boutonValider;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -487,6 +521,8 @@ public class AjouterLivre extends javax.swing.JDialog {
     private javax.swing.JLabel labelCommentaireLivre;
     private javax.swing.JLabel labelCouvLivre;
     private javax.swing.JLabel labelEditeur;
+    private javax.swing.JLabel labelMotClef;
+    private javax.swing.JLabel labelNomEditeur;
     private javax.swing.JLabel labelNomLivre;
     private javax.swing.JLabel labelNomTaxe;
     private javax.swing.JLabel labelPoids;

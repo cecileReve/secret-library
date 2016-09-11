@@ -25,19 +25,15 @@ public class GestionEditeur {
         this.connexion = connexion;
     }
 
-    public void sqlCreate(Editeur ed) {
-        try {
+    public void sqlCreate(Editeur ed) throws SQLException {
             String query = "INSERT INTO Editeur VALUES(?)";
             PreparedStatement stmt = connexion.prepareStatement(query);
             stmt.setString(1, ed.getNomEditeur());
             stmt.executeUpdate();
             stmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(GestionEditeur.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
-    public ResultSet sqlRead() {
+    public ResultSet sqlRead(){
         ResultSet rs = null;
         try {
             String query = "SELECT * FROM Editeur";
